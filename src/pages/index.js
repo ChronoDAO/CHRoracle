@@ -13,8 +13,14 @@ export default function Home() {
         </li>
         <li>
           {/* Link to the /materialtable page */}
-          <Link href="/materialtable">
-            Go to Material Table
+          <Link href="/users">
+            Go to Users List
+          </Link>
+        </li>
+        <li>
+          {/* Link to the /materialtable page */}
+          <Link href="/items">
+            Go to Items List
           </Link>
         </li>
       </ul>
