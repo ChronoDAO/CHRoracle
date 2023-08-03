@@ -1,9 +1,8 @@
-import { PrismaClient, User } from "@prisma/client";
+import prisma from "../../lib/prisma";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import { MaterialReactTable } from "material-react-table";
-import React, { useMemo} from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
-const prisma = new PrismaClient();
 
 export const getStaticProps: GetStaticProps = async () => {
   let users = await prisma.user.findMany();
@@ -12,12 +11,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      users, 
+      users,
     },
   };
 };
 
-export default function UserTable({
+export default function Users({
   users,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const columns = useMemo(
@@ -26,31 +25,43 @@ export default function UserTable({
         accessorKey: "id", //simple recommended way to define a column
         header: "ID",
         muiTableHeadCellProps: { sx: { color: "black" } }, //custom props
-        Cell: ({ renderedCellValue }) => {renderedCellValue}, //optional custom cell render
+        Cell: ({ renderedCellValue }) => {
+          renderedCellValue;
+        }, //optional custom cell render
       },
       {
         accessorKey: "name", //simple recommended way to define a column
         header: "Nom",
         muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <Link href={`/users/${encodeURIComponent(renderedCellValue)}`}>
+            {renderedCellValue}
+          </Link>
+        ), //optional custom cell render
       },
       {
         accessorKey: "spent", //simple recommended way to define a column
         header: "A dépensé $",
         muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "sold", //simple recommended way to define a column
         header: "A vendu $",
         muiTableHeadCellProps: { sx: { color: "blue" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "balance", //simple recommended way to define a column
         header: "Balance",
         muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>
+        ), //optional custom cell render
       },
     ],
     []
@@ -58,6 +69,7 @@ export default function UserTable({
 
   return (
     <>
+      <h1>List of Users:</h1>
       <MaterialReactTable columns={columns} data={users} />
       <Link href="/">Go back to Home</Link>
     </>

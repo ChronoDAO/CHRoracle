@@ -1,7 +1,7 @@
-import { PrismaClient, User } from "@prisma/client";
+import prisma from '../../lib/prisma';
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
-const prisma = new PrismaClient();
+
 
 export const getStaticProps: GetStaticProps = async () => {
   let user = await prisma.user.findFirst({
