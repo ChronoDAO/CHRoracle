@@ -1,4 +1,4 @@
-"use client";
+
 import Link from "next/link";
 import React, { useMemo } from "react";
 import { MaterialReactTable } from "material-react-table";
