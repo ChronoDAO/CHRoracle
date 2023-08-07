@@ -1,8 +1,9 @@
 import prisma from '../../lib/prisma';
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import { MaterialReactTable } from "material-react-table";
+import Table from '../../components/table/Table'
 import React, { useMemo } from "react";
 import Link from "next/link";
+
 
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -25,7 +26,7 @@ export default function Items({
       {
         accessorKey: "archetypeId", //simple recommended way to define a column
         header: "ID",
-        muiTableHeadCellProps: { sx: { color: "black" } }, //custom props
+        muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
         Cell: ({ renderedCellValue }) => (
           <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
             {renderedCellValue}
@@ -34,26 +35,26 @@ export default function Items({
       },
       {
         accessorKey: "name", //simple recommended way to define a column
-        header: "Nom",
+        header: "Name",
         muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
       },
       {
         accessorKey: "floorPrice", //simple recommended way to define a column
-        header: "floorPrice $",
-        muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
+        header: "Floor Price $",
+        muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>, //optional custom cell render
       },
       {
         accessorKey: "maxIssuance", //simple recommended way to define a column
-        header: "max Issuance",
-        muiTableHeadCellProps: { sx: { color: "blue" } }, //custom props
+        header: "Max Issuance",
+        muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
       },
       {
         accessorKey: "rarityName", //simple recommended way to define a column
         header: "Rarity",
-        muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
+        muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
       },
     ],
@@ -62,9 +63,9 @@ export default function Items({
 
   return (
     <>
-      <h1>Item list:</h1>
-      <MaterialReactTable columns={columns} data={items} />
-      <Link href="/">Go back to Home</Link>
+   
+      <Table viewName="Item" columns={columns} data={items}/>
+
     </>
   );
 }

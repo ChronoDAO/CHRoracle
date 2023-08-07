@@ -1,4 +1,4 @@
-import dashboard from'./dashboard.module.scss'
+
 import prisma from '../../lib/prisma';
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
@@ -10,7 +10,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: "Istarengwa"
     },
     include:{
-      purchases: true
+      purchases: true,
     }
   }
   
@@ -30,11 +30,11 @@ export default function Dashboard({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   let date = new Date(user.purchases[0].date);
 
-  
+  console.log(user)
 
   return (
     <>
-    <div className={dashboard.info}>
+    <div >
     <p>Nom: {user.name}</p>
       <p>ID :{user.id}</p>
       <p>Dépensé :{user.spent}Dollars </p>

@@ -1,4 +1,4 @@
-@use 'colors.scss' as *;
+@use './_colors' as *;
 @font-face {
   font-family: REM;
   src: url('/fonts/REM-VariableFont_wght.ttf');
@@ -24,6 +24,11 @@ ul {
 
 li {
   text-decoration: none;
+}
+
+.container{
+  width: 80%;
+  margin: 0 auto;
 }
 
 
