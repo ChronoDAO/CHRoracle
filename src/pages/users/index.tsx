@@ -33,9 +33,9 @@ export default function Users({
         accessorKey: "name", //simple recommended way to define a column
         header: "Nom",
         muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
-        Cell: ({ renderedCellValue }) => (
-          <Link href={`/users/${encodeURIComponent(renderedCellValue)}`}>
-            {renderedCellValue}
+        Cell: ({ cell, renderedCellValue }) => (
+          <Link href={`/users/${encodeURIComponent(cell.getValue())}`}>
+            { renderedCellValue }
           </Link>
         ), //optional custom cell render
       },

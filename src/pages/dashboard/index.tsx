@@ -1,3 +1,4 @@
+import dashboard from'./dashboard.module.scss'
 import prisma from '../../lib/prisma';
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
@@ -33,13 +34,16 @@ export default function Dashboard({
 
   return (
     <>
-      <p>Nom: {user.name}</p>
+    <div className={dashboard.info}>
+    <p>Nom: {user.name}</p>
       <p>ID :{user.id}</p>
       <p>Dépensé :{user.spent}Dollars </p>
       <p>Vendu :{user.sold}Dollars </p>
       <p>Vendu - Dépensé : {user.balance}Dollars </p>
       <p>Nb NFT acheté : {user.purchases.length}</p>
       <p>Date de premier achat: {date.getMonth()}</p>
+    </div>
+  
     </>
   );
 }
