@@ -23,6 +23,12 @@ export default function Home() {
             Go to Items List
           </Link>
         </li>
+        <li>
+          {/* Link to the /materialtable page */}
+          <Link href="/3dgraph">
+            Go to Force Graph
+          </Link>
+        </li>
       </ul>
     </div>
   );
