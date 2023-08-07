@@ -3,7 +3,7 @@ import Table from "../../../components/table/Table";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import styles from "./userInfo.module.scss";
+import styles from "../../../styles/info.module.scss";
 
 export default function User({
   user,
@@ -63,17 +63,17 @@ export default function User({
     <>
       {user ? (
         <>
-          <div className={styles.userInfo}>
+          <div className={styles.infoContainer}>
             <h1 className={styles.profileTitle}>Profile of: {user.name}</h1>
-            <h3 className={styles.balance}>
+            <h3>
               Balance Purchases/Sales:{" "}
               {Number(user.balance.toFixed(2)).toLocaleString()} $
             </h3>
-            <h3 className={styles.floorPrice}>
+            <h3 >
               Sum of Floor Prices of Owned NFTs:{" "}
               {sumFloorPrice.toLocaleString()} $
             </h3>
-            <h3 className={styles.generatedValue}>
+            <h3>
               Value Generated on BigTime:{" "}
               {Number(
                 (user.balance + sumFloorPrice).toFixed(2)

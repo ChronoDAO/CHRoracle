@@ -3,6 +3,7 @@ import Table from "../../../components/table/Table";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import styles from "../../../styles/info.module.scss";
 
 export default function Item({
   item,
@@ -31,6 +32,7 @@ export default function Item({
 
   return (
     <>
+    <div className={styles.infoContainer}>
       <h1>Details of item : {item.name}</h1>
       <h3>Max Issuance : {item.maxIssuance}</h3>
       <h3>
@@ -39,7 +41,7 @@ export default function Item({
 
       {item.setName ? <h3>{item.setName}</h3> : <h3>Pas de set</h3>}
       <h3>Number of NFTs issued: {item.nfts.length}</h3>
-     
+      </div>
       <Table viewName="item's Owners" columns={columns} data={item.nfts} />
       <Link href="/items">Go back to Items list</Link>
     </>
