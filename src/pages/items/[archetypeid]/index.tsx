@@ -1,5 +1,5 @@
 import prisma from "../../../lib/prisma";
-import { MaterialReactTable } from "material-react-table";
+import Table from "../../../components/table/Table";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
@@ -12,13 +12,13 @@ export default function Item({
       {
         accessorKey: "issuedId", //simple recommended way to define a column
         header: "ID",
-        muiTableHeadCellProps: { sx: { color: "black" } }, //custom props
+        muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
       },
       {
         accessorKey: "ownerName", //simple recommended way to define a column
         header: "Owner",
-        muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
+        muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
         Cell: ({ renderedCellValue }) => (
           <Link href={`/users/${encodeURIComponent(renderedCellValue)}`}>
             {renderedCellValue}
@@ -39,7 +39,8 @@ export default function Item({
 
       {item.setName ? <h3>{item.setName}</h3> : <h3>Pas de set</h3>}
       <h3>Number of NFTs issued: {item.nfts.length}</h3>
-      <MaterialReactTable columns={columns} data={item.nfts} />
+     
+      <Table viewName="item's Owners" columns={columns} data={item.nfts} />
       <Link href="/items">Go back to Items list</Link>
     </>
   );

@@ -13,7 +13,7 @@ const Table = ({ viewName, columns, data }) => {
   return (
     <>
       <div className={tableHeader.container}>
-        <h1 className={tableHeader.title}>{viewName}'s</h1>
+        <h1 className={tableHeader.title}>{viewName}</h1>
       </div>
       <ThemeProvider theme={darkTheme}>
         <MaterialReactTable columns={columns} data={data} />

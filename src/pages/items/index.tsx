@@ -65,7 +65,7 @@ export default function Items({
 
   return (
     <>
-      <Table viewName="Item" columns={columns} data={items} />
+      <Table viewName="item's list" columns={columns} data={items} />
     </>
   );
 }

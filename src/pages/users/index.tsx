@@ -75,7 +75,7 @@ export default function Users({
 
   return (
     <>
-      <Table viewName="User" columns={columns} data={users} />
+      <Table viewName="user's list" columns={columns} data={users} />
     </>
   );
 }

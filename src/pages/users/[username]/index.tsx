@@ -1,8 +1,9 @@
 import prisma from "../../../lib/prisma";
-import { MaterialReactTable } from "material-react-table";
+import Table from "../../../components/table/Table";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import styles from "./userInfo.module.scss";
 
 export default function User({
   user,
@@ -62,21 +63,25 @@ export default function User({
     <>
       {user ? (
         <>
-          <h1>Profile of: {user.name}</h1>
-          <h3>
-            Balance Achat/Vente:{" "}
-            {Number(user.balance.toFixed(2)).toLocaleString()} $
-          </h3>
-          <h3>
-            Somme FloorPrice des NFTs possédés: {sumFloorPrice.toLocaleString()}{" "}
-            $
-          </h3>
-          <h3>
-            Valeur généré sur BigTime :{" "}
-            {Number((user.balance + sumFloorPrice).toFixed(2)).toLocaleString()}{" "}
-            $
-          </h3>
-          <MaterialReactTable columns={columns} data={user.nfts} />
+          <div className={styles.userInfo}>
+            <h1 className={styles.profileTitle}>Profile of: {user.name}</h1>
+            <h3 className={styles.balance}>
+              Balance Purchases/Sales:{" "}
+              {Number(user.balance.toFixed(2)).toLocaleString()} $
+            </h3>
+            <h3 className={styles.floorPrice}>
+              Sum of Floor Prices of Owned NFTs:{" "}
+              {sumFloorPrice.toLocaleString()} $
+            </h3>
+            <h3 className={styles.generatedValue}>
+              Value Generated on BigTime:{" "}
+              {Number(
+                (user.balance + sumFloorPrice).toFixed(2)
+              ).toLocaleString()}{" "}
+              $
+            </h3>
+          </div>
+          <Table viewName="NTF's" columns={columns} data={user.nfts} />
         </>
       ) : (
         <p>User not found.</p>
