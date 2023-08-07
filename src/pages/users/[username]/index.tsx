@@ -1,9 +1,9 @@
-import prisma from '../../../lib/prisma';
-import { MaterialReactTable } from 'material-react-table';
-import Link from 'next/link';
-import { useMemo } from 'react';
+import prisma from "../../../lib/prisma";
+import Table from "../../../components/table/Table";
+import Link from "next/link";
+import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-
+import styles from "../../../styles/info.module.scss";
 
 export default function User({
   user,
@@ -30,7 +30,11 @@ export default function User({
         accessorKey: "item.floorPrice", //simple recommended way to define a column
         header: "FloorPrice $",
         muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <strong>
+            {Number(renderedCellValue.toFixed(2)).toLocaleString()}
+          </strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "item.rarityName", //simple recommended way to define a column
@@ -54,16 +58,30 @@ export default function User({
   }, 0);
 
   sumFloorPrice = Number(sumFloorPrice.toFixed(2));
-  
+
   return (
     <>
       {user ? (
         <>
-          <h1>Profile of: {user.name}</h1>
-          <h3>Balance Achat/Vente: {Number(user.balance.toFixed(2)).toLocaleString()} $</h3>
-          <h3>Somme FloorPrice des NFTs possédés: {sumFloorPrice.toLocaleString()} $</h3>
-          <h3>Valeur généré sur BigTime : {Number((user.balance+sumFloorPrice).toFixed(2)).toLocaleString()} $</h3>
-          <MaterialReactTable columns={columns} data={user.nfts} />
+          <div className={styles.infoContainer}>
+            <h1 className={styles.profileTitle}>Profile of: {user.name}</h1>
+            <h3>
+              Balance Purchases/Sales:{" "}
+              {Number(user.balance.toFixed(2)).toLocaleString()} $
+            </h3>
+            <h3 >
+              Sum of Floor Prices of Owned NFTs:{" "}
+              {sumFloorPrice.toLocaleString()} $
+            </h3>
+            <h3>
+              Value Generated on BigTime:{" "}
+              {Number(
+                (user.balance + sumFloorPrice).toFixed(2)
+              ).toLocaleString()}{" "}
+              $
+            </h3>
+          </div>
+          <Table viewName="NTF's" columns={columns} data={user.nfts} />
         </>
       ) : (
         <p>User not found.</p>
@@ -71,7 +89,7 @@ export default function User({
       <Link href="/users">Go back to Users list</Link>
     </>
   );
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { username } = context.params;
@@ -100,6 +118,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       user,
     },
   };
-}
-
-
+};
