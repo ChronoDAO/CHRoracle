@@ -22,12 +22,12 @@ export default function Users({
   const columns = useMemo(
     () => [
       {
-        accessorKey: "id", 
+        accessorKey: "id",
         header: "ID",
-        muiTableHeadCellProps: { sx: { color: "gray" } }, 
+        muiTableHeadCellProps: { sx: { color: "gray" } },
         Cell: ({ renderedCellValue }) => {
-         return  renderedCellValue;
-        }, 
+          return renderedCellValue;
+        },
       },
       {
         accessorKey: "name", //simple recommended way to define a column
@@ -72,9 +72,8 @@ export default function Users({
     ],
     []
   );
-  console.log(users[1])
+
   return (
-  
     <>
       <Table viewName="User" columns={columns} data={users} />
     </>

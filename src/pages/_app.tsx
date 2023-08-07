@@ -5,9 +5,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <div className="container">
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </div>
-      
     </Layout>
   );
 }

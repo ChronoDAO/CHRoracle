@@ -1,25 +1,25 @@
-@use '../../styles/colors' as *;
+@use "../../styles/colors" as *;
 
 #navbar {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: auto auto;
+  height: 70px;
+
+  .navContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+
+  .links {
+    color: $color-white;
+  }
+
+  .linksList {
     display: flex;
-    align-items: center;
-    width: 80%;
-    margin: auto auto;
-    height: 70px;
-
-    .navContainer{
-        width: 100%;
-        display: grid;
-        grid-template-columns: 40% 60%;
-    }
-
-    .links {
-        color: $color-white;
-    }
-    
-    .linksList{
-        display: flex;
-        justify-content: space-between;
-        color: $color-white;
-    }
+    justify-content: space-between;
+    color: $color-white;
+  }
 }

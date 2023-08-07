@@ -1,10 +1,8 @@
-import prisma from '../../lib/prisma';
+import prisma from "../../lib/prisma";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import Table from '../../components/table/Table'
+import Table from "../../components/table/Table";
 import React, { useMemo } from "react";
 import Link from "next/link";
-
-
 
 export const getStaticProps: GetStaticProps = async () => {
   let items = await prisma.item.findMany();
@@ -43,7 +41,11 @@ export default function Items({
         accessorKey: "floorPrice", //simple recommended way to define a column
         header: "Floor Price $",
         muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{Number(renderedCellValue.toFixed(2)).toLocaleString()}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+          <strong>
+            {Number(renderedCellValue.toFixed(2)).toLocaleString()}
+          </strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "maxIssuance", //simple recommended way to define a column
@@ -63,9 +65,7 @@ export default function Items({
 
   return (
     <>
-   
-      <Table viewName="Item" columns={columns} data={items}/>
-
+      <Table viewName="Item" columns={columns} data={items} />
     </>
   );
 }

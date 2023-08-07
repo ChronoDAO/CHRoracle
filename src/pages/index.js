@@ -1,11 +1,5 @@
-
-
 const Home = () => {
-  return (
-    <>
-    Work in progress !
-    </>
-  );
+  return <>Work in progress !</>;
 };
 
 export default Home;
