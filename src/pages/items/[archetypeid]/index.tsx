@@ -12,7 +12,7 @@ export default function Item({
     () => [
       {
         accessorKey: "issuedId", //simple recommended way to define a column
-        header: "ID",
+        header: "issuedId",
         muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
       },

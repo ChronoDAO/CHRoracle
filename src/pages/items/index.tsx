@@ -26,9 +26,9 @@ export default function Items({
         accessorKey: "imageUrl",
         header: "Item",
         muiTableHeadCellProps: { sx: { color: "gray" } },
-        Cell: ({ renderedCellValue }) => (
-          <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
-            <img src={renderedCellValue} alt ="" className={style.img}/>
+        Cell: ({row }) => (
+          <Link href={`/items/${encodeURIComponent(row.original.archetypeId)} `}>
+            <img src={row.original.imageUrl} alt ="" className={style.img}/>
           </Link>
         ),
       },
@@ -68,12 +68,15 @@ export default function Items({
         accessorKey: "rarityName", //simple recommended way to define a column
         header: "Rarity",
         muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
-        Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }) => (
+        <div className={`${style[renderedCellValue]} `} >{renderedCellValue}</div>
+        ), 
       },
     ],
     []
   );
-console.log(items[0])
+
+
   return (
     <>
       <Table viewName="item's list" columns={columns} data={items} />
