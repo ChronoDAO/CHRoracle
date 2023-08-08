@@ -24,7 +24,7 @@ export default function Items({
     () => [
       {
         accessorKey: "imageUrl",
-        header: " ",
+        header: "Item",
         muiTableHeadCellProps: { sx: { color: "gray" } },
         Cell: ({ renderedCellValue }) => (
           <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
