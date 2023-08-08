@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Link from "next/link";
 
 export default function Home() {
@@ -25,3 +26,16 @@ export default function Home() {
     </div>
   );
 }
+=======
+import styles from './home.module.scss'
+
+const Home = () => {
+  return <>
+  <div className={styles.home}>
+  Work in progress !
+  </div>
+  </>;
+};
+
+export default Home;
+>>>>>>> 27ae3bae74e75e5c54f91130517685d0ddb4b931
