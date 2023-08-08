@@ -3,6 +3,7 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import Table from "../../components/table/Table";
 import React, { useMemo } from "react";
 import Link from "next/link";
+import style from './items.module.scss'
 
 export const getStaticProps: GetStaticProps = async () => {
   let items = await prisma.item.findMany();
@@ -21,6 +22,16 @@ export default function Items({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const columns = useMemo(
     () => [
+      {
+        accessorKey: "imageUrl",
+        header: " ",
+        muiTableHeadCellProps: { sx: { color: "gray" } },
+        Cell: ({ renderedCellValue }) => (
+          <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
+            <img src={renderedCellValue} alt ="" className={style.img}/>
+          </Link>
+        ),
+      },
       {
         accessorKey: "archetypeId", //simple recommended way to define a column
         header: "ID",
@@ -62,7 +73,7 @@ export default function Items({
     ],
     []
   );
-
+console.log(items[0])
   return (
     <>
       <Table viewName="item's list" columns={columns} data={items} />

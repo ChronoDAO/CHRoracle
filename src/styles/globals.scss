@@ -1,11 +1,11 @@
-@use './_colors' as *;
+@use './colors' as *;
 @font-face {
   font-family: REM;
   src: url('/fonts/REM-VariableFont_wght.ttf');
 }
 
 body {
-  background-color: #0E1014;
+  background-color: $color-black;
   color: $color-white;
   font-family: REM;
 }

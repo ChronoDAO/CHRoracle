@@ -42,7 +42,7 @@ export default function Item({
       {item.setName ? <h3>{item.setName}</h3> : <h3>Pas de set</h3>}
       <h3>Number of NFTs issued: {item.nfts.length}</h3>
       </div>
-      <Table viewName="item's Owners" columns={columns} data={item.nfts} />
+      <Table viewName="NFT's" columns={columns} data={item.nfts} />
       <Link href="/items">Go back to Items list</Link>
     </>
   );
