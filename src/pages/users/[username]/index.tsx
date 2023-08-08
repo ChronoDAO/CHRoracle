@@ -3,7 +3,7 @@ import Table from "../../../components/table/Table";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import styles from "../../../styles/info.module.scss";
+import styles from "./userName.module.scss";
 
 export default function User({
   user,
@@ -58,18 +58,23 @@ export default function User({
   }, 0);
 
   sumFloorPrice = Number(sumFloorPrice.toFixed(2));
-
+  console.log(user);
   return (
     <>
       {user ? (
         <>
-          <div className={styles.infoContainer}>
-            <h1 className={styles.profileTitle}>Profile of: {user.name}</h1>
+          <div className={styles.container}>
+            <div className={styles["user-name"]}>
+              <h1>{user.name}</h1>
+            </div>
+
+            <div className={styles["info-container"]}>
+
             <h3>
               Balance Purchases/Sales:{" "}
               {Number(user.balance.toFixed(2)).toLocaleString()} $
             </h3>
-            <h3 >
+            <h3>
               Sum of Floor Prices of Owned NFTs:{" "}
               {sumFloorPrice.toLocaleString()} $
             </h3>
@@ -80,6 +85,7 @@ export default function User({
               ).toLocaleString()}{" "}
               $
             </h3>
+            </div>
           </div>
           <Table viewName="NTF's" columns={columns} data={user.nfts} />
         </>
