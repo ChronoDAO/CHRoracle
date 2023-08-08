@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.1.0",
+    "3d-force-graph": "^1.71.5",
     "autoprefixer": "10.4.14",
     "material-react-table": "^1.14.0",
     "next": "13.4.12",

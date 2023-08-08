@@ -22,7 +22,8 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "downlevelIteration": true, // ajouté car TypeScript  ne prend pas e fonctionnalité par défaut
   },
   "include": [
     "next-env.d.ts",
