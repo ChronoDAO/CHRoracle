@@ -58,7 +58,7 @@ export default function User({
   }, 0);
 
   sumFloorPrice = Number(sumFloorPrice.toFixed(2));
-  console.log(user);
+
   return (
     <>
       {user ? (

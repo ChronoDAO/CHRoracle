@@ -25,8 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
     links.push({ source: fromUser.name, target: toUser.name });
   });
-  console.log("nodes : "+ nodes.length)
-  console.log("links : "+ links.length)
+
   return {
     props: {
       nodes,
