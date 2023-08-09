@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './NFTCard.module.css';
+import styles from './NFTCard.module.scss';
 
 interface CardProps {
   totalNFTs: number;
