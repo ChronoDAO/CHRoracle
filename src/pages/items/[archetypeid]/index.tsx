@@ -61,6 +61,7 @@ export default function Item({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // @ts-ignore
   const { archetypeid } = context.params;
 
   const item = await prisma.item.findFirst({

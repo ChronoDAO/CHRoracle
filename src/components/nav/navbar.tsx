@@ -30,10 +30,12 @@ const nav = () => {
           </li>
           <li>
             {/* Link to the /materialtable page */}
-            <Link href="/3dgraph" className={navbar.links}>
-              Force Graph
+            <Link href="/nft" className={navbar.links}>
+              NFT
             </Link>
           </li>
+          
+          
         </ul>
       </div>
     </nav>
