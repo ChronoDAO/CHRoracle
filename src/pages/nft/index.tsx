@@ -1,9 +1,39 @@
 import React from 'react';
-import NFTCard from '../../components/NFTCard';
+import NFTCard from '../../components/cardNFT/NFTCard';
 import { PrismaClient } from '@prisma/client';
 import type { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const prisma = new PrismaClient();
+
+const COLORS = ["#0088FE", "#ff7e03", "#FFBB28", "#FF8042"];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index
+}: any) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
 interface UserData {
   name: string;
@@ -92,9 +122,14 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const NFTPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ user, uniqueNFTCount }) => {
-  const proportionDrop = (user.drops.length / user.nfts.length) * 100;
-  const proportionUni = (uniqueNFTCount / user.nfts.length) * 100;
+  const proportionDrop = parseFloat(((user.drops.length / user.nfts.length) * 100).toFixed(2));
+  const proportionUni = parseFloat(((uniqueNFTCount / user.nfts.length) * 100).toFixed(2));
 
+  
+  const data = [
+    { name: "Drops", value: user.drops.length },
+    { name: "NFTs", value: user.nfts.length - user.drops.length }
+  ];
 
   return (
     <div style={{ backgroundColor: '#0E1010', minHeight: '100vh' }}>
@@ -109,17 +144,39 @@ const NFTPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ use
       <h1 style={{ color: 'white', padding: '10px', margin: '0' }}>Page NFT</h1>
       <NFTCard 
         totalNFTs={user.nfts.length}
-        totalValue={user.balance}
+        totalValue={parseFloat(user.balance.toFixed(2))}
         totalDropNFT={user.drops.length}
         proportion={proportionDrop} 
         uniqueNFTs={uniqueNFTCount}
         proportionUni={proportionUni}
       />
 
+      <PieChart width={400} height={400}>
+        <Pie
+          data={data}
+          cx={200}
+          cy={200}
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={80}
+          fill="#8884d8" 
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={index === 1 ? "#ff7e03" : "#8884d8"} 
+            />
+          ))}
+        </Pie>
+        <Tooltip /> {/* Ajoutez une infobulle pour afficher les détails au survol */}
+        <Legend /> {/* Ajoutez une légende pour expliquer les couleurs */}
+      </PieChart>
     </div>
   );
 };
 
 export default NFTPage;
+
 
 
