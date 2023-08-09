@@ -25,7 +25,7 @@ export default function Dashboard({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   let date = new Date(user.purchases[0].date);
 
-  console.log(user);
+
 
   return (
     <>
