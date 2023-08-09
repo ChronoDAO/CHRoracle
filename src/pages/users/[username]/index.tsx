@@ -58,7 +58,7 @@ export default function User({
   }, 0);
 
   sumFloorPrice = Number(sumFloorPrice.toFixed(2));
-  console.log(user);
+
   return (
     <>
       {user ? (
@@ -98,6 +98,7 @@ export default function User({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // @ts-ignore
   const { username } = context.params;
 
   const user = await prisma.user.findFirst({

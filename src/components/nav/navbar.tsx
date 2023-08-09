@@ -34,12 +34,7 @@ const nav = () => {
               NFT
             </Link>
           </li>
-          <li>
-            {/* Link to the /materialtable page */}
-            <Link href="/3dgraph" className={navbar.links}>
-              Force Graph
-            </Link>
-          </li>
+          
           
         </ul>
       </div>
