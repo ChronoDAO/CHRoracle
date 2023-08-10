@@ -71,7 +71,7 @@ const nav = () => {
                 <span className={styles["item-icon"]}>
                   <VscGraph />
                 </span>
-                <span className={styles["item-title"]}>Force Graph</span>
+                <span className={styles["item-title"]}>Graph</span>
               </li>
             </Link>
 
