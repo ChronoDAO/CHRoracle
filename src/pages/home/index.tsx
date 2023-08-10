@@ -1,5 +1,6 @@
-import styles from "./dashboard.module.scss";
-export default function Dashboard() {
+import styles from "./home.module.scss";
+
+const Home = () => {
   return (
     <>
       <div className={styles["center-title"]}>
@@ -7,4 +8,6 @@ export default function Dashboard() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

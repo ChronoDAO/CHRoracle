@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import styles from "./archetypeID.module.scss";
+import { getOwnersGroupedByOwners } from "../../../lib/nfts-grouped-by-owners";
 
 export default function Item({
   item,
+  totalOwners,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const columns = useMemo(
     () => [
@@ -52,6 +54,9 @@ export default function Item({
               <h3>Number of NFTs issued: {item.nfts.length}</h3>
             </div>
           </div>
+          <div className={styles["owners-info-container"]}>
+            <h1> Owners: {totalOwners} </h1>
+          </div>
         </div>
       </div>
       <Table viewName="NFT's" columns={columns} data={item.nfts} />
@@ -79,9 +84,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const ownersGrouped = await getOwnersGroupedByOwners(item.archetypeId);
+
+  const totalOwners = ownersGrouped.length;
+
   return {
     props: {
       item,
+      ownersGrouped,
+      totalOwners,
     },
   };
 };
