@@ -3,35 +3,33 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import React, { useMemo } from "react";
 import Table from "../../components/table/Table";
 import Link from "next/link";
+import { getOwnersGroupedByOwners } from "../../lib/nfts-grouped-by-owners"
 
 export const getStaticProps: GetStaticProps = async () => {
-  const archetypeId = "BT0_jade_pass_0";
-  const ownersGrouped = await prisma.nFT.groupBy({
-    by: ["ownerName"],
-    where: {
-      archetypeId: archetypeId,
-    },
-    _count: {
-      ownerName: true,
-    },
-  });
+  const archetypeId = "BT0_jade_pass_0"; 
+  const ownersGrouped = await getOwnersGroupedByOwners(archetypeId);
+
+  const totalNFTS = ownersGrouped.reduce(
+    (total, owner) => total + owner._count.ownerName,
+    0
+  );
+  const totalOwners = ownersGrouped.length;
 
   return {
     props: {
       ownersGrouped,
+      totalNFTS,
+      totalOwners,
     },
   };
 };
 
 export default function OwnersGrouped({
   ownersGrouped,
+  totalNFTS,
+  totalOwners,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  let totalNFTS = 0;
-  ownersGrouped.forEach((owner) => {
-    totalNFTS  += owner._count.ownerName;
-  });
 
-  let totalOwners = ownersGrouped.length
 
   const columns = useMemo(
     () => [
