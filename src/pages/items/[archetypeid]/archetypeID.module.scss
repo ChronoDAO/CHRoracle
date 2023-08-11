@@ -1,4 +1,5 @@
 $img-size: 200px;
+$diagram-size: 350px;
 
 .container {
   background-color: rgba(34, 34, 34, 0.577);
@@ -37,4 +38,13 @@ $img-size: 200px;
       }
     }
   }
+}
+
+.diagram-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $diagram-size;
+  height: $diagram-size;
+  margin-left: 20px; 
 }
