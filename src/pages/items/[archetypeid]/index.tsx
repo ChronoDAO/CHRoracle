@@ -5,6 +5,9 @@ import { useMemo } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import styles from "./archetypeID.module.scss";
 import { getOwnersGroupedByOwners } from "../../../lib/nfts-grouped-by-owners";
+import NFTChart from "../../../components/charts/NFTchart";
+
+
 
 export default function Item({
   item,
@@ -56,9 +59,14 @@ export default function Item({
           </div>
           <div className={styles["owners-info-container"]}>
             <h1> Owners: {totalOwners} </h1>
+            <div className={styles["diagram-container"]}> 
+              <NFTChart nftsCount={item.nfts.length} maxIssuance={item.maxIssuance} />
+            </div>
           </div>
         </div>
       </div>
+      
+      
       <Table viewName="NFT's" columns={columns} data={item.nfts} />
       <Link href="/items">Go back to Items list</Link>
     </>
