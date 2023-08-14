@@ -1,7 +1,7 @@
 import prisma from "../../lib/prisma";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import React, { useMemo } from "react";
-import Table from "../table/Table";
+import Table from "../../components/table/Table";
 import Link from "next/link";
 import { getOwnersGroupedByOwners } from "../../lib/nfts-grouped-by-owners"
 
