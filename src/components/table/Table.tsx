@@ -16,7 +16,7 @@ const Table = ({ viewName, columns, data }) => {
         <h1 className={tableHeader.title}>{viewName}</h1>
       </div>
       <ThemeProvider theme={darkTheme}>
-        <MaterialReactTable columns={columns} data={data} />
+        <MaterialReactTable columns={columns} data={data} enableGrouping />
       </ThemeProvider>
       <Link href="/">Go back to Home</Link>
     </>
