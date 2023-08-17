@@ -1,0 +1,69 @@
+$unique: #f77be4;
+$transcendent: #ff3938;
+$exotic: #bd2fda;
+$exalted: #e35371;
+$mythic: #ffd529;
+$legendary: #e77e23;
+$epic: #a368fe;
+$rare: #129cfd;
+$uncommon: #22bd6b;
+$common: #a5b0be;
+
+.img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin tag($tag-color) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33px;
+  width: 100px;
+  border-radius: 20px;
+  background: $tag-color;
+  transition: 0.2s;
+  text-transform: capitalize;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.unique {
+  @include tag($unique);
+}
+.transcendent {
+  @include tag($transcendent);
+}
+.exotic {
+  @include tag($exotic);
+}
+.exalted {
+  @include tag($exalted);
+}
+.mythic {
+  @include tag($mythic);
+}
+.legendary {
+  @include tag($legendary);
+}
+.epic {
+  @include tag($epic);
+}
+.rare {
+  @include tag($rare);
+}
+.uncommon {
+  @include tag($uncommon);
+}
+.common {
+  @include tag($common);
+}

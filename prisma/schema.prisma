@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["filteredRelationCount"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        Int    @id @default(autoincrement())
+  name      String @unique
+  nfts      NFT[]
+  sales     Sale[] @relation("fromUser")
+  purchases Sale[] @relation("toUser")
+  drops     Drop[] @relation("toUser")
+  spent     Float  @default(0)
+  sold      Float  @default(0)
+  balance   Float  @default(0)
+}
+
+model NFT {
+  id          Int       @id @default(autoincrement())
+  composedId  String    @unique
+  issuedId    Int
+  lootDate    DateTime?
+  owner       User?     @relation(fields: [ownerName], references: [name])
+  ownerName   String?
+  item        Item?     @relation(fields: [archetypeId], references: [archetypeId])
+  archetypeId String?
+  sales       Sale[]
+  drops       Drop[]
+}
+
+model Item {
+  archetypeId String  @id @unique
+  name        String  @unique
+  description String?
+  imageUrl    String?
+
+  floorPrice     Float?
+  maxIssuance    Int
+  set            Set?        @relation(fields: [setName], references: [name])
+  setName        String?
+  nfts           NFT[]
+  categories     Category[]
+  rarity         Rarity?     @relation(fields: [rarityName], references: [name])
+  rarityName     String?
+  collection     Collection? @relation(fields: [collectionName], references: [name])
+  collectionName String?
+  optionName     String
+}
+
+model Category {
+  name  String @id @unique
+  items Item[]
+}
+
+model Rarity {
+  name  String @unique
+  items Item[]
+}
+
+model Collection {
+  name  String @unique
+  items Item[]
+}
+
+model Set {
+  name  String @unique
+  items Item[]
+}
+
+model Sale {
+  id       Int      @id @default(autoincrement())
+  price    Float
+  date     DateTime
+  from     User     @relation(fields: [fromUser], references: [name], name: "fromUser")
+  fromUser String
+  to       User     @relation(fields: [toUser], references: [name], name: "toUser")
+  toUser   String
+  nft      NFT?     @relation(fields: [nftId], references: [composedId])
+  nftId    String?
+}
+
+model Drop {
+  id     Int      @id @default(autoincrement())
+  date   DateTime
+  to     User     @relation(fields: [toUser], references: [name], name: "toUser")
+  toUser String
+  nft    NFT?     @relation(fields: [nftId], references: [id])
+  nftId  Int?
+}
+
+model OLHistory {
+  archetypeId String       @id
+  olTransfers OLTransfer[]
+  totalItems  Int
+  lastApiPull DateTime?
+  lastSync    DateTime?
+  synced      Boolean
+}
+
+model OLTransfer {
+  id          Int        @id @default(autoincrement())
+  composedId  String     @unique
+  issuedId    Int
+  eventName   String
+  price       Float?
+  fromUser    String
+  toUser      String
+  date        DateTime?
+  processed   Boolean    @default(false)
+  OLHistory   OLHistory? @relation(fields: [archetypeId], references: [archetypeId])
+  archetypeId String?
+}

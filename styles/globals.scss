@@ -1,0 +1,41 @@
+@import "./colors" ;
+@font-face {
+  font-family: REM;
+  src: url('/fonts/REM-VariableFont_wght.ttf');
+}
+
+body {
+  background-color: $color-black;
+  color: $color-white;
+  font-family: REM;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+ul {
+  list-style: none; 
+}
+
+li {
+  text-decoration: none;
+}
+
+.container{
+  width: 100%;
+  height: 100vh;
+  padding: 2rem 2rem 0 7.5rem;
+}
+
+.layout{
+  display: flex;
+  height: 100vh;
+}
+
+

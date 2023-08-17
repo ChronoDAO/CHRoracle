@@ -1,0 +1,130 @@
+@import "../../styles/colors";
+
+$navbar-background: rgb(6, 6, 6);
+$navbar-item-background:rgb(6, 6, 6);
+
+.sidebar-wrapper {
+  position: relative;
+  position: fixed; 
+  z-index: 3;
+  top: 0; 
+  left: 0;
+  height: 100%;
+
+  .btn {
+    position: absolute;
+    right: 0;
+    top: 4.7rem;
+    border: none;
+    background-color: $navbar-item-background;
+    color: whitesmoke;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translateX(50%) ;
+    font-size: 1.1rem;
+   
+    &:hover{
+      color: rgba(42, 208, 39, 0.75);
+      border: 1px solid rgba(42, 208, 39, 0.75);
+    }
+  }
+
+  .sidebar {
+    width: 15.5rem;
+    height: 100%;
+    background: $navbar-background;
+    padding: 1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+
+    .top-sidebar{
+      width: max-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #212121c1;
+
+      .logo {
+        width: 3.4rem;
+        height: 3.4rem;
+        border-radius: 3rem;
+        background: $color-black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(42, 208, 39);
+      }
+
+      .title {
+        margin-left: 0.5rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        opacity: 1;
+        transition: width 0.4s ease-in-out;
+      }
+    }
+
+    .list-items {
+      list-style: none;
+
+      .item {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        display: flex;
+        background-color: $navbar-item-background;
+        border-radius: 0.8rem;
+        margin-bottom: 1rem;
+        align-items: center;
+       
+
+        .item-logo {
+          display: flex;
+          align-items: center;
+          color: gray;
+        }
+        .item-title {
+          margin-left: 0.5rem;
+          text-transform: capitalize;
+          opacity: 1;
+          
+        }
+
+        &:hover{
+          background: $color-nigth-blue2;
+          color: rgba(42, 208, 39, 0.75);
+        }
+      }
+    }
+  }
+  &[data-collapse="true"] {
+   .btn{
+    transform: translateX(50%) scaleX(-1);
+   }
+    .sidebar {
+      width: 5rem;
+
+      .top-sidebar{
+        .title{
+          opacity: 0;
+          display: none;
+        }
+      }
+
+      .list-items {
+        .item {
+          .item-title {
+            opacity: 0;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

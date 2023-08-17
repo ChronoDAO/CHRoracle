@@ -1,0 +1,50 @@
+$img-size: 200px;
+$diagram-size: 350px;
+
+.container {
+  background-color: rgba(34, 34, 34, 0.577);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  .item-name {
+    margin: 0 0 20px 20px;
+  }
+
+  .body-container {
+    display: flex;
+
+    .img-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+
+      .img {
+        width: $img-size;
+        height: $img-size;
+        border-radius: 10px;
+        transition: 0.2s;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+    .info-container {
+      padding: 40px;
+
+      .line-spacing {
+        line-height: 1.7;
+      }
+    }
+  }
+}
+
+.diagram-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $diagram-size;
+  height: $diagram-size;
+  margin-left: 20px; 
+}

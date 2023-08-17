@@ -1,0 +1,31 @@
+{
+  "name": "chr_app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
+    "@prisma/client": "^5.1.0",
+    "@types/node": "20.5.0",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "material-react-table": "^1.14.0",
+    "next": "13.4.16",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "recharts": "^2.7.3",
+    "sass": "^1.65.1",
+    "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "prisma": "^5.1.0"
+  }
+}
