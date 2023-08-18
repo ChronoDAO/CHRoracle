@@ -1,6 +1,7 @@
 import styles from "./dashboard.module.scss";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import prisma from "../../lib/prisma";
+import ItemSales from "../../components/search/ItemSales";
 
 export const getStaticProps: GetStaticProps = async () => {
   let recentSales = await prisma.sale.findMany({
@@ -45,9 +46,21 @@ export default function Dashboard({
 
   return (
     <>
-       <div className={styles["center-title"]}>
-        <h1>Work in progress !</h1>
+      <div className={styles.titreCentre}>
+        <h1>Ventes Récentes</h1>
+      </div>
+      <div className={styles.listeDesVentes}>
+        {formattedSalesData.map((vente, index) => (
+          <ItemSales key={index} {...vente} />
+        ))}
       </div>
     </>
-  )
+  );
 }
+
+
+
+
+
+
+
