@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { GetServerSideProps } from 'next';
 import NFTCard from '../../components/cardNFT/NFTCard';
 import { PrismaClient } from '@prisma/client';
-import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const prisma = new PrismaClient();
@@ -56,32 +56,41 @@ interface UserData {
   }[];
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+interface UserType {
+  id: number;
+  name: string;
+  nfts: any[];  
+  drops: any[];  
+  balance: number;
+  
+}
+
+interface NFTProps {
+  user: UserType;
+  uniqueNFTCount: number;
+}
+
+interface MyObject {
+  user: UserType;
+  [key: string]: any;  
+}
+
+
+
+export const getServerSideProps: GetServerSideProps<NFTProps> = async (context) => {
+  const name = context.query.name as string || 'Istarengwa';
+
   const user = await prisma.user.findFirst({
-    where: {
-      name: 'Istarengwa',
-    },
+    where: { name },
     include: {
-      purchases: {
-        select: {
-          id: true,
-          date: true,
-        },
-      },
-      drops: {
-        select: {
-          id: true,
-          date: true,
-        },
-      },
+      purchases: { select: { id: true, date: true } },
+      drops: { select: { id: true, date: true } },
       nfts: true,
     },
   });
 
   if (!user) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
   // Convertir les dates en chaînes ISO et gérer les valeurs null
@@ -121,11 +130,16 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const NFTPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ user, uniqueNFTCount }) => {
+  const NFTPage: React.FC<NFTProps> = ({ user, uniqueNFTCount }) => {
+  const [searchName, setSearchName] = useState('');
+
+  const handleSearch = () => {
+    location.href = `?name=${searchName}`;
+  };
+
   const proportionDrop = parseFloat(((user.drops.length / user.nfts.length) * 100).toFixed(2));
   const proportionUni = parseFloat(((uniqueNFTCount / user.nfts.length) * 100).toFixed(2));
 
-  
   const data = [
     { name: "Drops", value: user.drops.length },
     { name: "NFTs", value: user.nfts.length - user.drops.length }
@@ -142,6 +156,16 @@ const NFTPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ use
       </style>
 
       <h1 style={{ color: 'white', padding: '10px', margin: '0' }}>Page NFT</h1>
+
+      {/* Champ de recherche */}
+      <input
+        type="text"
+        value={searchName}
+        onChange={e => setSearchName(e.target.value)}
+        placeholder="Entrer un pseudo"
+      />
+      <button onClick={handleSearch}>Rechercher</button>
+
       <NFTCard 
         totalNFTs={user.nfts.length}
         totalValue={parseFloat(user.balance.toFixed(2))}
@@ -169,14 +193,13 @@ const NFTPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ use
             />
           ))}
         </Pie>
-        <Tooltip /> {/* Ajoutez une infobulle pour afficher les détails au survol */}
-        <Legend /> {/* Ajoutez une légende pour expliquer les couleurs */}
+        <Tooltip />
+        <Legend />
       </PieChart>
     </div>
   );
 };
 
 export default NFTPage;
-
 
 
