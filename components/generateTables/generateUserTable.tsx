@@ -4,21 +4,57 @@ import { MaterialReactTable } from "material-react-table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tableHeader from "./tableHeader.module.scss";
 import Link from "next/link";
+import { type MRT_ColumnDef } from 'material-react-table'; 
+interface Item {
+  archetypeId: string;
+  name: string;
+  description: string | null;
+  imageUrl: string | null;
+  floorPrice: number | null;
+  maxIssuance: number;
+  setName: string | null;
+  rarityName: string | null;
+  collectionName: string | null;
+  optionName: string;
+}
 
-export default function GenerateUserTable({ data }: { data: any }) {
+interface NFT {
+  id: number;
+  composedId: string;
+  issuedId: number;
+  lootDate: Date | null;
+  owner: User | null;
+  ownerName: string | null;
+  item: Item | null;
+  archetypeId: string ;
+
+}
+
+interface User {
+  id: number;
+  name: string;
+  nfts: NFT[];
+
+  spent: number;
+  sold: number;
+  balance: number;
+}
+
+export default function GenerateUserTable({ data }: { data: User }) {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
   });
 
-  const columns = useMemo(
+  const columns = useMemo<MRT_ColumnDef<NFT>[]>(
     () => [
       {
         accessorKey: "archetypeId", //simple recommended way to define a column
         header: "ID",
         muiTableHeadCellProps: { sx: { color: "black" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
+        Cell: ({ renderedCellValue }) => (
+          //  @ts-ignore 
           <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
             {renderedCellValue}
           </Link>
@@ -28,7 +64,7 @@ export default function GenerateUserTable({ data }: { data: any }) {
         accessorKey: "item.name", //simple recommended way to define a column
         header: "Item Name",
         muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
+        Cell: ({ renderedCellValue }) => (
           <strong>{renderedCellValue}</strong>
         ), //optional custom cell render
       },
@@ -36,8 +72,10 @@ export default function GenerateUserTable({ data }: { data: any }) {
         accessorKey: "item.floorPrice", //simple recommended way to define a column
         header: "FloorPrice $",
         muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
+        
+        Cell: ({ renderedCellValue }) => (
           <strong>
+            {/* @ts-ignore */}
             {Number(renderedCellValue.toFixed(2)).toLocaleString()}
           </strong>
         ), //optional custom cell render
@@ -46,7 +84,7 @@ export default function GenerateUserTable({ data }: { data: any }) {
         accessorKey: "item.rarityName", //simple recommended way to define a column
         header: "Rarity",
         muiTableHeadCellProps: { sx: { color: "blue" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
+        Cell: ({ renderedCellValue }) => (
           <strong>{renderedCellValue}</strong>
         ), //optional custom cell render
       },
@@ -54,7 +92,7 @@ export default function GenerateUserTable({ data }: { data: any }) {
         accessorKey: "item.maxIssuance", //simple recommended way to define a column
         header: "Max Issuance",
         muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
+        Cell: ({ renderedCellValue }) => (
           <strong>{renderedCellValue}</strong>
         ), //optional custom cell render
       },

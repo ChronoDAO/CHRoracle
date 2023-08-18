@@ -1,65 +1,80 @@
 "use client";
 import React, { useMemo } from "react";
-import { MaterialReactTable } from "material-react-table";
+import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tableHeader from "./tableHeader.module.scss";
 import Link from "next/link";
 
-export default function GenerateUsersTable({ data }: { data: any }) {
+interface User {
+  id: number;
+  name: string;
+  spent: number;
+  sold: number;
+  balance: number;
+}
+
+export default function GenerateUsersTable({ data }: { data: User[] }) {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
   });
-  const columns = useMemo(
+//@ts-ignore
+  const columns: MRT_ColumnDef<User>[] = useMemo(
     () => [
       {
         accessorKey: "id",
         header: "ID",
         muiTableHeadCellProps: { sx: { color: "gray" } },
-        Cell: ({ renderedCellValue }:{renderedCellValue: number}) => {
-          return renderedCellValue;
+        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => {
+          return <>{renderedCellValue}</>;
         },
       },
       {
-        accessorKey: "name", //simple recommended way to define a column
+        accessorKey: "name",
         header: "Name",
-        muiTableHeadCellProps: { sx: { color: "grey" } }, //custom props
-        Cell: ({ cell, renderedCellValue }:{renderedCellValue: number, cell: any}) => (
+        muiTableHeadCellProps: { sx: { color: "grey" } },
+        Cell: ({
+          cell,
+          renderedCellValue,
+        }: {
+          renderedCellValue: string;
+          cell: any; // Adjust the cell type as needed
+        }) => (
           <Link href={`/users/${encodeURIComponent(cell.getValue())}`}>
             {renderedCellValue}
           </Link>
-        ), //optional custom cell render
+        ),
       },
       {
-        accessorKey: "sold", //simple recommended way to define a column
+        accessorKey: "sold",
         header: "Sales $",
-        muiTableHeadCellProps: { sx: { color: "green" } }, //custom props
-        Cell: ({ renderedCellValue }:{renderedCellValue: number}) => (
+        muiTableHeadCellProps: { sx: { color: "green" } },
+        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
           <strong>
             {Number(renderedCellValue.toFixed(2)).toLocaleString()}
           </strong>
-        ), //optional custom cell render
+        ),
       },
       {
-        accessorKey: "spent", //simple recommended way to define a column
+        accessorKey: "spent",
         header: "Purchases $",
-        muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
-        Cell: ({ renderedCellValue }:{renderedCellValue: number}) => (
+        muiTableHeadCellProps: { sx: { color: "red" } },
+        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
           <strong>
             {Number(renderedCellValue.toFixed(2)).toLocaleString()}
           </strong>
-        ), //optional custom cell render
+        ),
       },
       {
-        accessorKey: "balance", //simple recommended way to define a column
+        accessorKey: "balance",
         header: "Balance",
-        muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
-        Cell: ({ renderedCellValue }:{renderedCellValue: number}) => (
+        muiTableHeadCellProps: { sx: { color: "skyblue" } },
+        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
           <strong>
             {Number(renderedCellValue.toFixed(2)).toLocaleString()}
           </strong>
-        ), //optional custom cell render
+        ),
       },
     ],
     []

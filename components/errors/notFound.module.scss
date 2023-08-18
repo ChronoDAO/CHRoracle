@@ -1,0 +1,17 @@
+/* usernameNotFound.module.scss */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.message {
+  padding: 20px;
+  background-color: black; /* Update background color */
+  color: white; /* Update text color */
+  border: 1px solid #333;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
