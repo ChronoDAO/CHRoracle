@@ -4,17 +4,17 @@ import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tableHeader from "./tableHeader.module.scss";
 import Link from "next/link";
-import style from './items.module.scss';
+import style from "./items.module.scss";
 
 interface Item {
   archetypeId: string;
   name: string;
   description: string | null;
-  imageUrl: string ;
-  floorPrice: number ;
+  imageUrl: string;
+  floorPrice: number;
   maxIssuance: number;
   setName: string | null;
-  rarityName: string ;
+  rarityName: string;
   collectionName: string | null;
   optionName: string;
 }
@@ -25,7 +25,7 @@ export default function GenerateItemsTable({ data }: { data: Item[] }) {
       mode: "dark",
     },
   });
-//@ts-ignore
+  //@ts-ignore
   const columns: MRT_ColumnDef<Item>[] = useMemo(
     () => [
       {
@@ -33,8 +33,10 @@ export default function GenerateItemsTable({ data }: { data: Item[] }) {
         header: "Item",
         muiTableHeadCellProps: { sx: { color: "gray" } },
         Cell: ({ row }: { row: any }) => (
-          <Link href={`/items/${encodeURIComponent(row.original.archetypeId)} `}>
-            <img src={row.original.imageUrl} alt ="" className={style.img}/>
+          <Link
+            href={`/items/${encodeURIComponent(row.original.archetypeId)} `}
+          >
+            <img src={row.original.imageUrl} alt="" className={style.img} />
           </Link>
         ),
       },
@@ -52,7 +54,9 @@ export default function GenerateItemsTable({ data }: { data: Item[] }) {
         accessorKey: "name", //simple recommended way to define a column
         header: "Name",
         muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: string }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
+          <strong>{renderedCellValue}</strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "floorPrice", //simple recommended way to define a column
@@ -68,15 +72,19 @@ export default function GenerateItemsTable({ data }: { data: Item[] }) {
         accessorKey: "maxIssuance", //simple recommended way to define a column
         header: "Max Issuance",
         muiTableHeadCellProps: { sx: { color: "red" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => <strong>{renderedCellValue}</strong>, //optional custom cell render
+        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
+          <strong>{renderedCellValue}</strong>
+        ), //optional custom cell render
       },
       {
         accessorKey: "rarityName", //simple recommended way to define a column
         header: "Rarity",
         muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
         Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
-        <div className={`${style[renderedCellValue]} `} >{renderedCellValue}</div>
-        ), 
+          <div className={`${style[renderedCellValue]} `}>
+            {renderedCellValue}
+          </div>
+        ),
       },
     ],
     []

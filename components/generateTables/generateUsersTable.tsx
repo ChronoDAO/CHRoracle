@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tableHeader from "./tableHeader.module.scss";
 import Link from "next/link";
 
+
 interface User {
   id: number;
   name: string;
