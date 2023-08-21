@@ -41,7 +41,7 @@ interface User {
   spent: number;
   sold: number;
   balance: number;
-  ownerName: string; 
+  ownerName: string;
   _count: {
     ownerName: number;
   };
@@ -112,14 +112,7 @@ export default function GenerateItemTable({
 
                 {data.setName ? <h3>{data.setName}</h3> : <h3>Pas de set</h3>}
                 <h3>Number of NFTs issued: {data.nfts.length}</h3>
-                <div className={styles["btn-container"]}>
-                  <Link href={`/items/${data.archetypeId}/owners`}>
-                  <button className={styles["btn-1"]}>
-                    Owners: {totalOwners}
-                  </button>
-                  </Link>
-                
-                </div>
+                <h3>Owners: {totalOwners}</h3>
               </div>
             </div>
           </div>
