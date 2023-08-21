@@ -21,11 +21,11 @@ export default async function Item({ params: { archetypeid }}: Params)  {
     },
   });
 
-  if (!item) {
-    return <ItemNotFound archetypeId={archetypeid} />
-  }
+  // if (!item) {
+  //   return <ItemNotFound archetypeId={archetypeid} />
+  // }
 
-  const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
+  // const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
   
   //@ts-ignore
   return (
