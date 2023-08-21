@@ -1,5 +1,6 @@
 import prisma from "./prisma";
 
+
 export const salesByDay = async () => {
     const sales = await prisma.sale.findMany({
         orderBy: {
@@ -7,7 +8,7 @@ export const salesByDay = async () => {
         },
       })
 
-      const salesModifiedDate = sales.map((sale) => {
+      const salesModifiedDate = sales.map((sale: { date: Date; price: number }) => {
         const date = sale.date;
   
         const day = date.getDate();
