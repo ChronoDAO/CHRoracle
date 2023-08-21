@@ -1,8 +1,7 @@
 
 import RecentSales from '../../components/RecentSales/RecentSales';
 import prisma from "../../lib/prisma";
-
-export default async function Dashboard() {
+async function getSales() {
   let recentSales = await prisma.sale.findMany({
     take: 5, // Limit the result to 5 records
     orderBy: {
@@ -16,6 +15,10 @@ export default async function Dashboard() {
       },
     },
   });
+  return recentSales;
+}
+export default async function Dashboard() {
+  let recentSales = await getSales();
 
 
   return (
