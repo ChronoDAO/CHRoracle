@@ -1,6 +1,5 @@
-'use client';
-import RecentSaleCard from './RecentSaleCard';
-import styles from './dashboard.module.scss';
+import RecentSaleCard from '../salesCard/RecentSaleCard';
+import styles from './recentSales.module.scss';
 interface NFT {
   id: number;
   composedId: string;
