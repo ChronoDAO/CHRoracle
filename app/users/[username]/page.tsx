@@ -1,54 +1,12 @@
 import React from "react";
 import GenerateUserTable from "@/components/generateTables/generateUserTable";
 import prisma from "../../../lib/prisma";
-import styles from "./userName.module.scss";
-import { AnyMxRecord } from "dns";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
 type Params = {
   params: {
     username: string;
   };
 };
-const COLORS = ["#0088FE", "#ff7e03", "#FFBB28", "#FF8042"];
-
-const RADIAN = Math.PI / 180;
-
-interface UserData {
-  name: string;
-  purchases: {
-    id: number;
-    date: string;
-  }[];
-  balance: number;
-  drops: {
-    id: number;
-    date: string;
-  }[];
-  nfts: {
-    id: number;
-    composedId: string;
-    issuedId: number;
-    lootDate: string | null;
-    ownerName: string | null;
-    archetypeId: string | null;
-  }[];
-}
-interface UserType {
-  id: number;
-  name: string;
-  nfts: any[];  
-  drops: any[];  
-  balance: number;
-  
-}
-interface NFTProps {
-  user: UserType;
-  uniqueNFTCount: number;
-}
-interface MyObject {
-  user: UserType;
-  [key: string]: any;  
-}
 
 export default async function User({ params: { username } }: Params) {
   let user = await prisma.user.findFirst({

@@ -1,3 +1,4 @@
+'use client';
 import styles from "./recentSaleCard.module.scss";
 
 type TypeItemSales = {

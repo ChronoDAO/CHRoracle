@@ -1,3 +1,4 @@
+'use client';
 import RecentSaleCard from './RecentSaleCard';
 import styles from './dashboard.module.scss';
 interface NFT {

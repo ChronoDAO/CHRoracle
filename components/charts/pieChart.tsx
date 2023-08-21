@@ -1,18 +1,37 @@
+'use client';
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 
+interface ChartData {
+  name: string;
+  value: number;
+}
 
-const pieChart = ({ chartData }) => {
+interface ActiveShapeProps {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  fill: string;
+  payload: ChartData;
+  percent: number;
+  value: number;
+}
+
+const pieChart: React.FC<{ chartData: ChartData[] }> = ({ chartData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onPieEnter = useCallback(
-    (_, index) => {
+    (data: any, index: number) => {
       setActiveIndex(index);
     },
     [setActiveIndex]
   );
 
-  const renderActiveShape = (props) => {
+  const renderActiveShape = (props: ActiveShapeProps) => {
     const RADIAN = Math.PI / 180;
     const {
       cx,

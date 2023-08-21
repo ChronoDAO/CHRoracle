@@ -22,7 +22,7 @@ export default async function Dashboard() {
     <>
     <h1>Bienvenue sur Dashboard</h1>
     {/* @ts-ignore */}
-      {/* <RecentSales data={ recentSales }  /> */}
+      <RecentSales data={ recentSales }  />
     </>
   )
 
