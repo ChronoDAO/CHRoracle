@@ -1,4 +1,4 @@
-import styles from "./dashboard.module.scss";
+
 import RecentSales from '../../components/RecentSales/RecentSales';
 import prisma from "../../lib/prisma";
 
@@ -17,7 +17,7 @@ export default async function Dashboard() {
     },
   });
 
-  console.log(recentSales[0]);
+
   return (
     <>
     <h1>Bienvenue sur Dashboard</h1>
