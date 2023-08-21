@@ -123,7 +123,6 @@ export default function GenerateItemTable({
           </div>
         </div>
       </div>
-
       <div className={tableHeader.container}>
         <h1 className={tableHeader.title}>{data.name}</h1>
       </div>
@@ -132,5 +131,6 @@ export default function GenerateItemTable({
       </ThemeProvider>
       <Link href="/items">Go back to Items list</Link>
     </>
+
   );
 }
