@@ -8,7 +8,9 @@ export default async function Items() {
   return (
     <>
     {/* @ts-ignore */}
+
       <GenerateItemsTable data={items} />
+
     </>
   );
 }
