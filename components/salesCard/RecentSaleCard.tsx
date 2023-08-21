@@ -1,3 +1,4 @@
+'use client';
 import styles from "./recentSaleCard.module.scss";
 
 type TypeItemSales = {
@@ -66,28 +67,29 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
   imageUrl,
 }) => {
   return (
-    <div className={styles.itemSales}>
-      <div className={styles.cardHeader}>
-        <p className={styles.cardTitle}>
-          {itemName} #{issuedId}
-        </p>
-        <img src={imageUrl} alt={itemName} className={styles.imageDeVente} />
-      </div>
-      <div className={styles.cardContent}>
-        <p className={styles.cardText}>
-          <strong>From:</strong> {fromUser}{" "}
-        </p>
-        <p>
-          <strong>To:</strong> {toUser}
-        </p>
-        <p className={styles.cardText}>
-          <strong>Price:</strong> {price}
-        </p>
-        <p className={styles.cardText}>
-          <strong>Date/Time:</strong> {new Date(date).toLocaleString()}
-        </p>
-      </div>
-    </div>
+    // <div className={styles.itemSales}>
+    //   <div className={styles.cardHeader}>
+    //     <p className={styles.cardTitle}>
+    //       {itemName} #{issuedId}
+    //     </p>
+    //     <img src={imageUrl} alt={itemName} className={styles.imageDeVente} />
+    //   </div>
+    //   <div className={styles.cardContent}>
+    //     <p className={styles.cardText}>
+    //       <strong>From:</strong> {fromUser}{" "}
+    //     </p>
+    //     <p>
+    //       <strong>To:</strong> {toUser}
+    //     </p>
+    //     <p className={styles.cardText}>
+    //       <strong>Price:</strong> {price}
+    //     </p>
+    //     <p className={styles.cardText}>
+    //       <strong>Date/Time:</strong> {new Date(date).toLocaleString()}
+    //     </p>
+    //   </div>
+    // </div>
+    <p>Recent Sale Card</p>
   );
 };
 
