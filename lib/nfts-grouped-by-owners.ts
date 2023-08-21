@@ -1,10 +1,10 @@
 import prisma from "./prisma";
 
-export const getOwnersGroupedByOwners = async (archetypeId: string) => {
+export const getOwnersGroupedByOwners = async ({archetypeid}:{archetypeid: string}) => {
   const ownersGrouped = await prisma.nFT.groupBy({
     by: ["ownerName"],
     where: {
-      archetypeId: archetypeId,
+      archetypeId: archetypeid,
     },
     _count: {
       ownerName: true,

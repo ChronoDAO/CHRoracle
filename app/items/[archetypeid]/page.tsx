@@ -25,8 +25,7 @@ export default async function Item({ params: { archetypeid }}: Params)  {
     return <ItemNotFound archetypeId={archetypeid} />
   }
 
-  const ownersGrouped = await getOwnersGroupedByOwners(item.archetypeId);
-
+  const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
   
   //@ts-ignore
   return <GenerateItemTable data={item} ownersGrouped={ownersGrouped}
