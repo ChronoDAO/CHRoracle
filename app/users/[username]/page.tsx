@@ -57,5 +57,8 @@ export default async function User({ params: { username } }: Params) {
     uniqueNFTCount,
   };
   //@ts-ignore
-  return <GenerateUserTable data={data} />;
+  return (
+  // <GenerateUserTable data={data} />
+  <p>Generate User Table here</p>
+  );
 }
