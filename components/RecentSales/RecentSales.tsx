@@ -71,6 +71,6 @@ export default function ({ data }: { data: Sale[] }) {
       </div>
     </div>
   );
-  // Your component logic here
+
 }
 
