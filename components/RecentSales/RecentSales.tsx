@@ -59,7 +59,7 @@ export default function ({ data }: { data: Sale[] }) {
   }));
 
   return (
-    <>
+    <div className={styles.horizontalContainer}>
       <div className={styles.titreCentre}>
         <h1>Ventes Récentes</h1>
       </div>
@@ -68,8 +68,8 @@ export default function ({ data }: { data: Sale[] }) {
           <RecentSaleCard key={index} {...vente} />
         ))}
       </div>
-    </>
-  )
+    </div>
+  );
   // Your component logic here
 }
 

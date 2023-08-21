@@ -1,4 +1,4 @@
-import styles from './recentSaleCard.module.scss';
+import styles from "./recentSaleCard.module.scss";
 
 type TypeItemSales = {
   price: number;
@@ -17,7 +17,7 @@ interface NFT {
   lootDate: Date | null;
   owner: User | null;
   ownerName: string | null;
-  item: Item ;
+  item: Item;
   archetypeId: string | null;
 }
 
@@ -38,7 +38,7 @@ interface Sale {
   date: Date;
   from: User;
   to: User;
-  nft: NFT ;
+  nft: NFT;
   nftId: string | null;
 }
 
@@ -67,13 +67,25 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
 }) => {
   return (
     <div className={styles.itemSales}>
-      <img src={imageUrl} alt={itemName} className={styles.imageDeVente} />
-      <div>
-        <p><strong>Article :</strong> {itemName}</p>
-        <p><strong>Prix :</strong> {price}</p>
-        <p><strong>Date :</strong> {new Date(date).toLocaleDateString()}</p>
-        <p><strong>De :</strong> {fromUser}</p>
-        <p><strong>Vers :</strong> {toUser}</p>
+      <div className={styles.cardHeader}>
+        <p className={styles.cardTitle}>
+          {itemName} #{issuedId}
+        </p>
+        <img src={imageUrl} alt={itemName} className={styles.imageDeVente} />
+      </div>
+      <div className={styles.cardContent}>
+        <p className={styles.cardText}>
+          <strong>From:</strong> {fromUser}{" "}
+        </p>
+        <p>
+          <strong>To:</strong> {toUser}
+        </p>
+        <p className={styles.cardText}>
+          <strong>Price:</strong> {price}
+        </p>
+        <p className={styles.cardText}>
+          <strong>Date/Time:</strong> {new Date(date).toLocaleString()}
+        </p>
       </div>
     </div>
   );
