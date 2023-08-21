@@ -1,0 +1,12 @@
+.itemSales {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+  .imageDeVente {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
