@@ -9,6 +9,7 @@ type Params = {
 };
 
 export default async function User({ params: { username } }: Params) {
+  console.log(username);
   let user = await prisma.user.findFirst({
     where: {
       name: username,

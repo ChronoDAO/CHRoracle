@@ -11,7 +11,7 @@ type Params = {
 
 
 export default async function Item({ params: { archetypeid }}: Params)  {
-
+  console.log(archetypeid);
   let item = await prisma.item.findFirst({
     where: {
       archetypeId: archetypeid,
