@@ -2,7 +2,8 @@ import React from "react";
 import GenerateUserTable from "@/components/generateTables/generateUserTable";
 import { PrismaClient } from "@prisma/client";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
-const prisma = new PrismaClient;
+
+const prisma = new PrismaClient();
 type Params = {
   params: {
     username: string;
