@@ -60,8 +60,8 @@ export default function ({ data }: { data: Sale[] }) {
 
   return (
     <div className={styles.horizontalContainer}>
-      <div className={styles.titreCentre}>
-        <h1>Ventes Récentes</h1>
+      <div className={styles.title}>
+        <h1>Resent sales: </h1>
       </div>
       <div className={styles.listeDesVentes}>
         {formattedSalesData.map((vente, index) => (
