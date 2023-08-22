@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import styles from "./recentSaleCard.module.scss";
+import { HiArrowCircleRight } from "react-icons/hi";
 
 type TypeItemSales = {
   price: number;
@@ -67,29 +68,34 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
   imageUrl,
 }) => {
   return (
-    // <div className={styles.itemSales}>
-    //   <div className={styles.cardHeader}>
-    //     <p className={styles.cardTitle}>
-    //       {itemName} #{issuedId}
-    //     </p>
-    //     <img src={imageUrl} alt={itemName} className={styles.imageDeVente} />
-    //   </div>
-    //   <div className={styles.cardContent}>
-    //     <p className={styles.cardText}>
-    //       <strong>From:</strong> {fromUser}{" "}
-    //     </p>
-    //     <p>
-    //       <strong>To:</strong> {toUser}
-    //     </p>
-    //     <p className={styles.cardText}>
-    //       <strong>Price:</strong> {price}
-    //     </p>
-    //     <p className={styles.cardText}>
-    //       <strong>Date/Time:</strong> {new Date(date).toLocaleString()}
-    //     </p>
-    //   </div>
-    // </div>
-    <p>Recent Sale Card</p>
+    <div className={styles.nft}>
+      <div className={styles.main}>
+        <div className={styles["nft-issued-number"]}>N° {issuedId}</div>
+        <img className={styles.tokenImage} src={imageUrl} alt={itemName} />
+        <p className={styles["nft-name"]}>{itemName}</p>
+       
+          <div className={styles.users}>
+            <p>{fromUser}</p>
+            <div className={styles.arrowIcon}>
+              <HiArrowCircleRight/>
+            </div>
+            <p>{toUser}</p>
+          </div>
+       
+        <hr />
+        <div className={styles.creator}>
+          <div className={styles.price}>
+            <p>${price} </p>
+          </div>
+          <div className={styles.date}>
+          <ins>◷</ins>
+          <p>..few moments ago</p>
+          {/* <p>{new Date(date).toLocaleString()}</p> */}
+          </div>
+          
+        </div>
+      </div>
+    </div>
   );
 };
 
