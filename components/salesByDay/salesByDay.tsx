@@ -8,7 +8,7 @@ import am4themes_dark from "@amcharts/amcharts4/themes/dark"; // Import the dark
 am4core.useTheme(am4themes_animated);
 am4core.useTheme(am4themes_dark);
 
-export default function SalesByDayChart({ data }) {
+export default function SalesByDayChart({ data }:{data: any}) {
    useEffect(() => {
       const createChart = () => {
          let chart = am4core.create("chartdiv", am4charts.XYChart);
@@ -45,6 +45,7 @@ export default function SalesByDayChart({ data }) {
    }, []);
 
    return (
-       <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
-   );
+      //  <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <p>sales by day here.</p>
+      );
 };

@@ -2,6 +2,7 @@ import prisma from "./prisma";
 
 export const getSalesByDay = async () => {
     const sales = await prisma.sale.findMany({
+        take: 10,
         orderBy: {
           date: "asc",
         },
