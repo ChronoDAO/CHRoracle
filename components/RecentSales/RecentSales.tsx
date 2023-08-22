@@ -1,5 +1,5 @@
-import RecentSaleCard from '../salesCard/RecentSaleCard';
-import styles from './recentSales.module.scss';
+import RecentSaleCard from "../salesCard/RecentSaleCard";
+import styles from "./recentSales.module.scss";
 interface NFT {
   id: number;
   composedId: string;
@@ -7,7 +7,7 @@ interface NFT {
   lootDate: Date | null;
   owner: User | null;
   ownerName: string | null;
-  item: Item ;
+  item: Item;
   archetypeId: string | null;
 }
 
@@ -28,7 +28,7 @@ interface Sale {
   date: Date;
   fromUser: string;
   toUser: string;
-  nft: NFT ;
+  nft: NFT;
   nftId: string | null;
 }
 
@@ -36,7 +36,7 @@ interface Item {
   archetypeId: string;
   name: string;
   description: string | null;
-  imageUrl: string ;
+  imageUrl: string;
   floorPrice: number | null;
   maxIssuance: number;
   setName: string | null;
@@ -45,7 +45,6 @@ interface Item {
   optionName: string;
   nfts: NFT[];
 }
-
 
 export default function ({ data }: { data: Sale[] }) {
   const formattedSalesData = data.map((sale) => ({
@@ -59,17 +58,16 @@ export default function ({ data }: { data: Sale[] }) {
   }));
 
   return (
-    <div className={styles.horizontalContainer}>
-      <div className={styles.title}>
-        <h1>Resent sales: </h1>
+    <div className={styles["resent-sales-container"]}>
+      <div className={styles["title-container"]}>
+        <div className={styles.title}>Resent sales</div>
       </div>
-      <div className={styles.listeDesVentes}>
+
+      <div className={styles["cards-container"]}>
         {formattedSalesData.map((vente, index) => (
           <RecentSaleCard key={index} {...vente} />
         ))}
       </div>
     </div>
   );
-
 }
-

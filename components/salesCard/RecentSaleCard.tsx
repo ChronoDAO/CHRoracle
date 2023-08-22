@@ -70,29 +70,35 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
   return (
     <div className={styles.nft}>
       <div className={styles.main}>
-        <div className={styles["nft-issued-number"]}>N° {issuedId}</div>
-        <img className={styles.tokenImage} src={imageUrl} alt={itemName} />
-        <p className={styles["nft-name"]}>{itemName}</p>
-       
-          <div className={styles.users}>
-            <p>{fromUser}</p>
-            <div className={styles.arrowIcon}>
-              <HiArrowCircleRight/>
-            </div>
-            <p>{toUser}</p>
+        <div className={styles["nft-issued-tag"]}>
+          <div className={styles["nft-issued-number"]}>
+          # {issuedId}
           </div>
-       
+        </div>
+        
+        <img className={styles.tokenImage} src={imageUrl} alt={itemName} />
+        <div className={styles["nft-name"]}>
+          {itemName}
+        </div>
+
+        <div className={styles.users}>
+          <p>{fromUser}</p>
+          <div className={styles.arrowIcon}>
+            <HiArrowCircleRight />
+          </div>
+          <p>{toUser}</p>
+        </div>
+
         <hr />
         <div className={styles.creator}>
           <div className={styles.price}>
             <p>${price} </p>
           </div>
           <div className={styles.date}>
-          <ins>◷</ins>
-          <p>..few moments ago</p>
-          {/* <p>{new Date(date).toLocaleString()}</p> */}
+            <ins>◷</ins>
+            <p>..few moments ago</p>
+            {/* <p>{new Date(date).toLocaleString()}</p> */}
           </div>
-          
         </div>
       </div>
     </div>
