@@ -59,8 +59,10 @@ interface Item {
 }
 
 const getTimeDifference = (date: Date): string => {
-  const now = new Date();
-  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  let now= new Date();
+  const nowUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
+
+  const diffInSeconds = Math.floor((nowUtc.getTime() - date.getTime()) / 1000);
 
   if (diffInSeconds < 60) {
     return "a few seconds ago";
