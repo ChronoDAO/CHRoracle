@@ -1,7 +1,9 @@
 import React from "react";
 import GenerateUserTable from "@/components/generateTables/generateUserTable";
-import prisma from "../../../lib/prisma";
+import { PrismaClient } from "@prisma/client";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
+
+const prisma = new PrismaClient();
 type Params = {
   params: {
     username: string;
@@ -9,6 +11,7 @@ type Params = {
 };
 
 export default async function User({ params: { username } }: Params) {
+  console.log(username);
   let user = await prisma.user.findFirst({
     where: {
       name: username,
