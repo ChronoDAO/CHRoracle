@@ -46,30 +46,30 @@ const NFTChart = ({ nftsCount, maxIssuance }) => {
   };
 
   return (
-    // <ResponsiveContainer width="100%" height={300}>
-    //   <PieChart>
-    //     <Pie
-    //       data={pieChartData}
-    //       cx="50%"
-    //       cy="50%"
-    //       labelLine={false}
-    //       label={renderCustomizedLabel}
-    //       outerRadius={80}
-    //       fill="#8884d8"
-    //       dataKey="value"
-    //     >
-    //       {pieChartData.map((entry, index) => (
-    //         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-    //       ))}
-    //     </Pie>
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Pie
+          data={pieChartData}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {pieChartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
 
-    //     <Tooltip /> 
+        <Tooltip /> 
         
-    //     <Legend /> 
+        <Legend /> 
 
-    //   </PieChart>
-    // </ResponsiveContainer>
-    <p>nftchart ici</p>
+      </PieChart>
+    </ResponsiveContainer>
+
   );
 };
 

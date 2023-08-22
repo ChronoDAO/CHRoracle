@@ -89,7 +89,7 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
           </div>
           <div className={styles.date}>
           <ins>◷</ins>
-          <p>..few moments ago</p>
+          <p>a few seconds ago...</p>
           {/* <p>{new Date(date).toLocaleString()}</p> */}
           </div>
           
