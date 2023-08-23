@@ -45,7 +45,7 @@ export default function SalesByDayChart({ data }:{data: any}) {
    }, []);
 
    return (
-      //  <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
-      <p>sales by day here.</p>
+       <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      // <p>sales by day here.</p>
       );
 };
