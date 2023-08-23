@@ -21,17 +21,16 @@ export default async function Item({ params: { archetypeid }}: Params)  {
     },
   });
   console.log(process.env.NODE_ENV)
-  // if (!item) {
-  //   return <ItemNotFound archetypeId={archetypeid} />
-  // }
+  if (!item) {
+    return <ItemNotFound archetypeId={archetypeid} />
+  }
 
-  // const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
+  const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
   
   //@ts-ignore
-  return (
-  // <GenerateItemTable data={item} ownersGrouped={ownersGrouped}
-  //  />
-  <p>GenerateItemTable</p>
+  return (<GenerateItemTable data={item} ownersGrouped={ownersGrouped}
+   />
+
    )
 }
 
