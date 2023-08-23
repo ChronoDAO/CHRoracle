@@ -6,7 +6,7 @@ export async function getSalesWithCategories() {
           orderBy: {
             date: "desc",
           },
-          take: 2,
+          take: 10,
           include: {
             nft: {
               include: {
@@ -19,9 +19,9 @@ export async function getSalesWithCategories() {
             },
           },
         });
-        console.dir(sales, { depth: null });
-        console.log(sales[1].nft?.item?.categories)
-    
+     
+        const objectType = Array.isArray(sales)
+        console.log(objectType)
     return sales
   
       

@@ -17,8 +17,6 @@ export async function getLastSales( string: string) {
         },
       },
     });
-    console.log(startDate)
-   console.log(finishDate)
 
     const salesModifiedDate = sales.map((sale) => {
         const date = sale.date;
@@ -65,7 +63,7 @@ export async function getLastSales( string: string) {
     };
     aggregatedSales.push(objectFormat);
 
-  console.log(aggregatedSales);
+  return aggregatedSales
 
   } catch (error) {
     console.error("Error:", error);

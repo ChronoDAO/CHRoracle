@@ -13,13 +13,14 @@ export default async function Dashboard() {
   let last24hsales = await getLastSales("2023-06-25T02:00:00.000Z");
   let salesWithCategories = getSalesWithCategories()
 
+
   return (
     <>
       {/* @ts-ignore */}
       <RecentSales data={recentSales} />
       <SalesByDay data={salesByDay} />
       <OptionalSalesStats data={last24hsales} />
-      <Test data= {salesWithCategories[0]}/>
+      <Test data= {salesWithCategories}/>
     </>
   );
 }
