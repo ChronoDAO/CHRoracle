@@ -1,5 +1,5 @@
-import {getSales} from '@/lib/recent-sales';
-import {getSalesByDay} from '@/lib/sales-by-day';
+import {getSales} from '@/lib/prisma/recent-sales';
+import { getSalesByDay } from '@/lib/prisma/sales-by-day';
 import RecentSales from '@/components/RecentSales/RecentSales';
 import SalesByDay from '@/components/salesByDay/salesByDay';
 

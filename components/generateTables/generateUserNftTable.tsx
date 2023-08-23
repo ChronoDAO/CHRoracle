@@ -46,11 +46,6 @@ interface Item {
   optionName: string;
 }
 
-interface GenerateUserTableData {
-  user: User;
-  uniqueNFTCount: number;
-}
-
 const renderCustomizedLabel = ({
   cx,
   cy,
@@ -58,7 +53,7 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index
+  index,
 }: any) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -77,11 +72,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default function GenerateUserTable({
-  data,
-}: {
-  data: GenerateUserTableData;
-}) {
+export default function GenerateUserInventoryTable({ data }: { data: User }) {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -135,17 +126,17 @@ export default function GenerateUserTable({
     []
   );
 
-  const proportionDrop = parseFloat(
-    ((data.user.drops.length / data.user.nfts.length) * 100).toFixed(2)
-  );
-  const proportionUni = parseFloat(
-    ((data.uniqueNFTCount / data.user.nfts.length) * 100).toFixed(2)
-  );
+  // const proportionDrop = parseFloat(
+  //   ((data.user.drops.length / data.nfts.length) * 100).toFixed(2)
+  // );
+  // const proportionUni = parseFloat(
+  //   ((data.uniqueNFTCount / data.nfts.length) * 100).toFixed(2)
+  // );
 
-  const pieData = [
-    { name: "Drops", value: data.user.drops.length },
-    { name: "NFTs", value: data.user.nfts.length - data.user.drops.length }
-  ];
+  // const pieData = [
+  //   { name: "Drops", value: data.user.drops.length },
+  //   { name: "NFTs", value: data.user.nfts.length - data.user.drops.length }
+  // ];
   // Calculate the sum of floorPrice values for all NFTs
   // let sumFloorPrice = data.nfts.reduce(
   //   ({ total, nft }: { total: number; nft: any }) => {
@@ -158,27 +149,27 @@ export default function GenerateUserTable({
 
   return (
     <>
-      <div>
+      {/* <div>
         <div>
-          <h1>{data.user.name}</h1>
+          <h1>{data.name}</h1>
         </div>
         <div>
           <h3>
             Balance Purchases/Sales:{" "}
-            {Number(data.user.balance.toFixed(2)).toLocaleString()} $
+            {Number(data.balance.toFixed(2)).toLocaleString()} $
           </h3>
 
-          {/* <h3>
+          <h3>
                 Sum of Floor Prices of Owned NFTs:{" "}
                 {sumFloorPrice.toLocaleString()} $
-              </h3> */}
-          {/* <h3>
+              </h3>
+          <h3>
                 Value Generated on BigTime:{" "}
                 {Number(
                   (data.balance + sumFloorPrice).toFixed(2)
                 ).toLocaleString()}{" "}
                 $
-              </h3> */}
+              </h3>
         </div>
         <div style={{ backgroundColor: "#0E1010", minHeight: "100vh" }}>
           <style>
@@ -219,15 +210,15 @@ export default function GenerateUserTable({
             <Tooltip />
             <Legend />
           </PieChart>
-        </div>
-      </div>
+        </div> 
+        <Link href="/users">Go back to Users list</Link>
+      </div> */}
       <div className={tableHeader.container}>
-        <h1 className={tableHeader.title}>{data.user.name}</h1>
+        <h1 className={tableHeader.title}>{data.name}</h1>
       </div>
       <ThemeProvider theme={darkTheme}>
-        <MaterialReactTable columns={columns} data={data.user.nfts} />
+        <MaterialReactTable columns={columns} data={data.nfts} />
       </ThemeProvider>
-      <Link href="/users">Go back to Users list</Link>
     </>
   );
 }
