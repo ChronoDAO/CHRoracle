@@ -11,7 +11,7 @@ type Params = {
 
 
 export default async function Item({ params: { archetypeid }}: Params)  {
-
+  console.log(archetypeid);
   let item = await prisma.item.findFirst({
     where: {
       archetypeId: archetypeid,
@@ -20,7 +20,7 @@ export default async function Item({ params: { archetypeid }}: Params)  {
       nfts: true,
     },
   });
-
+  console.log(process.env.NODE_ENV)
   if (!item) {
     return <ItemNotFound archetypeId={archetypeid} />
   }
@@ -28,8 +28,10 @@ export default async function Item({ params: { archetypeid }}: Params)  {
   const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
   
   //@ts-ignore
-  return <GenerateItemTable data={item} ownersGrouped={ownersGrouped}
-   />;
+  return (<GenerateItemTable data={item} ownersGrouped={ownersGrouped}
+   />
+
+   )
 }
 
 

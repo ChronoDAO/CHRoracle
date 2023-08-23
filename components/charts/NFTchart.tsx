@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 //@ts-ignore
@@ -68,6 +69,7 @@ const NFTChart = ({ nftsCount, maxIssuance }) => {
 
       </PieChart>
     </ResponsiveContainer>
+
   );
 };
 
