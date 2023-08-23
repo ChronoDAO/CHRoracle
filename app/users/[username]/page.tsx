@@ -1,34 +1,20 @@
 import React from "react";
-import GenerateUserTable from "@/components/generateTables/generateUserTable";
-import { PrismaClient } from "@prisma/client";
+import GenerateUserTable from "@/components/generateTables/generateUserNftTable";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
+import { getUserNFTs } from "@/lib/prisma/user-nfts";
 
-const prisma = new PrismaClient();
 type Params = {
   params: {
     username: string;
   };
 };
 
-export default async function User({ params: { username } }: Params) {
-  console.log(username);
-  let user = await prisma.user.findFirst({
-    where: {
-      name: username,
-    },
-    include: {
-      nfts: {
-        include: {
-          item: true,
-        },
-      },
-      purchases: { select: { id: true, date: true } },
-      drops: { select: { id: true, date: true } },
-    },
-  });
-
+export default async function User({ params:  username  }: Params) {
+ 
+  const user = await getUserNFTs(username) ;
+  
   if (!user) {
-    return <UsernameNotFound username={username} />;
+    return <UsernameNotFound username={username.username} />;
   }
   //  // Convertir les dates en chaînes ISO et gérer les valeurs null
    const purchasesWithSerializedDates = user.purchases.map((purchase) => ({
@@ -59,8 +45,10 @@ export default async function User({ params: { username } }: Params) {
     },
     uniqueNFTCount,
   };
-  //@ts-ignore
-  return (<GenerateUserTable data={data} />
+  
+  return (
+    //@ts-ignore
+  <GenerateUserTable data={data} />
 
   );
 }

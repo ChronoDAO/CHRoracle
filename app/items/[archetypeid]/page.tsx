@@ -1,7 +1,7 @@
-import prisma from "../../../lib/prisma";
+import prisma from "../../../lib/prisma/prisma";
 import GenerateItemTable from "@/components/generateTables/generateItemTable";
 import ItemNotFound from "@/components/errors/itemNotFound";
-import { getOwnersGroupedByOwners } from "../../../lib/nfts-grouped-by-owners";
+import { getOwnersGroupedByOwners } from "../../../lib/prisma/nfts-grouped-by-owners";
 
 type Params = {
   params: {
