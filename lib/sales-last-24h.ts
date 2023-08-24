@@ -44,7 +44,7 @@ export async function getLast24hSales( string: string) {
           totalSales += salesModifiedDate[i].price;
         } else  {
           objectFormat = {
-            date: saleDate.toISOString(),
+            date: saleDate.getTime(),
             value: totalSales,
           }
           aggregatedSales.push(objectFormat)
@@ -58,12 +58,12 @@ export async function getLast24hSales( string: string) {
       }
   
       objectFormat = {
-        date: saleDate.toISOString(),
+        date: saleDate.getTime(),
         value: totalSales,
     };
     aggregatedSales.push(objectFormat);
 
-  return aggregatedSales
+  return aggregatedSales;
 
   } catch (error) {
     console.error("Error:", error);
