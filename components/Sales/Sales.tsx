@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./sales.module.scss";
 import SalesByDaysChart from "@/components/charts/SalesByDaysChart";
-// import SalesByHourChart from "@/components/charts/SalesTimeChart";
+import SalesByHourChart from "@/components/charts/SalesTimeChart";
 
 type SalesProps = {
     data: any;
@@ -66,7 +66,7 @@ export default function Sales({ data, data24h }: SalesProps){
       {selectedOption === "all" ? <SalesByDaysChart data={data}/> : null}
       {selectedOption === "last30days" ? <SalesByDaysChart data={data.slice(-30)}/> : null}
       {selectedOption === "last7days" ? <SalesByDaysChart data={data.slice(-7)}/> : null}
-      {/* {selectedOption === "last24h" ? <SalesByHourChart data24h={data24h}/> : null} */}
+      {selectedOption === "last24h" ? <SalesByHourChart data24h={data24h}/> : null}
     </div>
   );
 }

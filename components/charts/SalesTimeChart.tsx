@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import am5themes_Dark from "@amcharts/amcharts5/themes/Dark";
 
 export default function SalesTimeChart({ data24h }: { data24h: any }) {
   useEffect(() => {
     const createChart = () => {
       let root = am5.Root.new("chartdiv");
 
-      root.setThemes([am5themes_Animated.new(root)]);
+      root.setThemes([am5themes_Animated.new(root), am5themes_Dark.new(root)]);
 
       let chart = root.container.children.push(
         am5xy.XYChart.new(root, {
@@ -72,13 +73,6 @@ export default function SalesTimeChart({ data24h }: { data24h: any }) {
 
       series.data.setAll(data);
 
-      // Pre-zoom X axis to last hour
-      series.events.once("datavalidated", function (ev, target) {
-        let lastDate = new Date(data[data.length - 1].date);
-        let firstDate = new Date(lastDate.getTime() - 3600000);
-        xAxis.zoomToDates(firstDate, lastDate);
-      });
-
       // Add cursor
       chart.set(
         "cursor",
@@ -130,7 +124,7 @@ export default function SalesTimeChart({ data24h }: { data24h: any }) {
 
   return (
     <div>
-      <div id="chartdiv" style={{ width: "80%", height: "400px" }}></div>
+      <div id="chartdiv" style={{ width: "100%", height: "400px" }}></div>
     </div>
   );
 }
