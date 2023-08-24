@@ -1,6 +1,7 @@
+
 import prisma from "./prisma";
 
-export async function getLast24hSales( string: string) {
+export async function getSalesByMinutes( string: string) {
   try {
     const startDate = new Date(string);
   
@@ -24,22 +25,24 @@ export async function getLast24hSales( string: string) {
         const month = date.getMonth();
         const year = date.getFullYear();
         const hour = date.getHours();
-        const utcDateYMDH = new Date(Date.UTC(year, month, day, hour)); 
-        sale.date = utcDateYMDH;  
+        const minutes = date.getMinutes();
+        const utcDateYMDHM = new Date(Date.UTC(year, month, day, hour, minutes)); 
+        sale.date = utcDateYMDHM;  
         return sale;
       });
    
       const aggregatedSales = [];
       let saleDate = salesModifiedDate[0].date
-      let saleHour = salesModifiedDate[0].date.getHours();
-      let nextHour = saleHour + 1
+      let saleDayMinutes =( (salesModifiedDate[0].date.getHours()* 60) + salesModifiedDate[0].date.getMinutes());
+      let nextMinute = saleDayMinutes + 1
     
       let totalSales = 0;
       let objectFormat = {}
 
       for (let i = 0; i < salesModifiedDate.length; i++) {
+        let dayMinutes = ( (salesModifiedDate[i].date.getHours()* 60) + salesModifiedDate[i].date.getMinutes());
         if (
-          salesModifiedDate[i].date.getHours() < nextHour
+            dayMinutes < nextMinute
         ) {
           totalSales += salesModifiedDate[i].price;
         } else  {
@@ -49,8 +52,8 @@ export async function getLast24hSales( string: string) {
           }
           aggregatedSales.push(objectFormat)
           saleDate = salesModifiedDate[i].date;
-          saleHour = salesModifiedDate[i].date.getHours();
-          nextHour = saleHour + 1  
+          saleDayMinutes = dayMinutes
+          nextMinute = saleDayMinutes + 1  
           totalSales = salesModifiedDate[i].price;
   
            
@@ -63,7 +66,7 @@ export async function getLast24hSales( string: string) {
     };
     aggregatedSales.push(objectFormat);
 
-  return aggregatedSales;
+  return aggregatedSales
 
   } catch (error) {
     console.error("Error:", error);
