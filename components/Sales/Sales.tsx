@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./sales.module.scss";
 import SalesByDaysChart from "@/components/charts/SalesByDaysChart";
-// import SalesByHourChart from "@/components/charts/SalesByHourChart";
+// import SalesByHourChart from "@/components/charts/SalesTimeChart";
 
 type SalesProps = {
     data: any;
