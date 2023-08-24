@@ -1,9 +1,8 @@
 import React from "react";
-import GenerateUserInventoryTable from "@/components/generateTables/generateUserInventoryTable";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
 import { getUserHistory } from "@/lib/prisma/user-history";
-import GenerateUserSaleTable from "@/components/generateTables/generateUserSaleTable";
-import UserPie from "@/components/UserInfo/userInfoPie";
+import UserHistory from "@/components/generateTables/generateUserHistoryTables";
+import UserPie from "@/components/UserInfo/userInfoCard";
 
 type Params = {
   params: {
@@ -27,9 +26,10 @@ export default async function User({ params:  username  }: Params) {
     {/* @ts-ignore */}
     <UserPie  data={user} />
     {/* @ts-ignore */}
-    <GenerateUserInventoryTable data={user} />
+    <UserHistory data={user} />
+    {/* <GenerateUserInventoryTable data={user} /> */}
     {/* @ts-ignore */}
-    <GenerateUserSaleTable data={user} />
+    
     </>
     );
 }
