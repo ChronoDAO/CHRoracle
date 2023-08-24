@@ -1,25 +1,19 @@
-import { getSales } from "@/lib/prisma/recent-sales";
-import { getSalesByDay } from "@/lib/prisma/sales-by-day";
-import { getLast24hSales } from "@/lib/sales-last-24h";
-import RecentSales from "@/components/RecentSales/RecentSales";
-import Sales from "@/components/Sales/Sales";
-
-
+import {getSales} from '@/lib/prisma/recent-sales';
+import { getSalesByDay } from '@/lib/prisma/sales-by-day';
+import RecentSales from '@/components/RecentSales/RecentSales';
+import SalesByDay from '@/components/salesByDay/salesByDay';
 
 export default async function Dashboard() {
   let recentSales = await getSales();
-  let salesByDay = await getSalesByDay();
-  let last24hsales = await getLast24hSales("2023-06-25T02:00:00.000Z");
+  let salesByDay = await getSalesByDay()
 
   return (
-   
     <>
-      {/* @ts-ignore */}
-      <RecentSales data={recentSales} />
-
-      <Sales data={salesByDay} data24h={last24hsales}/>
-
-      
+  
+    {/* @ts-ignore */}
+      <RecentSales data={ recentSales }  />
+      <SalesByDay data= {salesByDay}/>
     </>
-  );
+  )
+
 }
