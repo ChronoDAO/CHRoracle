@@ -1,7 +1,7 @@
 import prisma from "./prisma";
 
 export const getUserHistory = async ({ username }: { username: string }) => {
-  console.log(`getUserHistory en cours`);
+
   let user = await prisma.user.findFirst({
     where: {
       name: username,

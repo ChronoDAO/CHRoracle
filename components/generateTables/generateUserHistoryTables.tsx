@@ -8,8 +8,6 @@ import styles from "./UserHistory.module.scss"; // Import your CSS/SCSS file
 import { Modal, Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import style from "./items.module.scss";
-import Items from "@/app/items/page";
 interface NFT {
   id: number;
   composedId: string;
@@ -31,7 +29,7 @@ interface Item {
   name: string;
   imageUrl: string;
   floorPrice: number;
-  
+
   rarityName: string;
   maxIssuance: number;
 }
@@ -67,7 +65,7 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "nft.item.imageUrl",
         header: "Image",
         size: 50,
-        
+
         Cell: ({ row }: { row: any }) => (
           <Link
             href={`/items/${encodeURIComponent(
@@ -86,14 +84,13 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "nft.item.name",
         header: "Item Name",
         size: 150,
-        
+
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>,
       },
       {
         accessorKey: "nft.issuedId",
         header: "ID",
         size: 50,
-        
       },
       {
         accessorKey: "date",
@@ -112,7 +109,7 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "nft.item.imageUrl",
         header: "Image",
         size: 50,
-        
+
         Cell: ({ row }: { row: any }) => (
           <Link
             href={`/items/${encodeURIComponent(
@@ -131,14 +128,13 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "nft.item.name",
         header: "Item Name",
         size: 220,
-        
+
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>,
       },
       {
         accessorKey: "nft.issuedId",
         size: 50,
         header: "NFT ID",
-        
       },
       {
         accessorKey: "fromUser",
@@ -167,7 +163,7 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "nft.item.imageUrl",
         header: "Image",
         size: 50,
-        
+
         Cell: ({ row }: { row: any }) => (
           <Link
             href={`/items/${encodeURIComponent(
@@ -185,7 +181,7 @@ export default function UserHistory({ data }: { data: User }) {
       {
         accessorKey: "nft.item.name",
         header: "Item Name",
-        
+
         Cell: ({ renderedCellValue }) => <strong>{renderedCellValue}</strong>,
       },
       {
@@ -221,22 +217,28 @@ export default function UserHistory({ data }: { data: User }) {
         accessorKey: "item.imageUrl",
         header: "Image",
         size: 50,
-        Cell: ({ row }: { row: any }) => (
-          <Link
-            href={`/items/${encodeURIComponent(
-              row.original.nft.item.archetypeId
-            )} `}
-          >
-            <img
-              src={row.original.nft.item.imageUrl}
-              alt="NFT"
-              style={{ width: "50px", height: "50px" }}
-            />
-          </Link>
-        ),
+        muiTableHeadCellProps: { sx: { color: "gray" } },
+        Cell: ({ row }: { row: any }) => {
+          if (row.original.item) {
+            return (
+              <Link
+                href={`/items/${encodeURIComponent(
+                  row.original.item.archetypeId
+                )}`}
+              >
+                <img
+                  src={row.original.item.imageUrl}
+                  alt="NFT"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </Link>
+            );
+          }
+          return null; // Handle the case where nft or item is undefined
+        },
       },
       {
-        accessorKey: "item.name", 
+        accessorKey: "item.name",
         header: "Item Name",
       },
       {
@@ -244,11 +246,11 @@ export default function UserHistory({ data }: { data: User }) {
         header: "FloorPrice $",
       },
       {
-        accessorKey: "rarityName", //simple recommended way to define a column
+        accessorKey: "item.rarityName", //simple recommended way to define a column
         header: "Rarity",
-        muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
+        muiTableHeadCellProps: { sx: { color: "skyblue" } }, //@ts-ignore
         Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
-          <div className={`${style[renderedCellValue]} `}>
+          <div className={`${styles[renderedCellValue]} `}>
             {renderedCellValue}
           </div>
         ),
@@ -262,58 +264,94 @@ export default function UserHistory({ data }: { data: User }) {
     ],
     []
   );
-// State to manage which table to display
-const [activeTable, setActiveTable] = useState("Inventory");
+  const [selectedOption, setSelectedOption] = useState("Inventory");
 
-// Toggle active table
-const toggleTable = (tableName: string) => {
-  setActiveTable(tableName);
-};
+  return (
+    <>
+      <div className={styles["sales-hystory-container"]}>
+        <div className={styles["sales-header"]}>
+          <div className={styles["sales-title"]}>What's in the box ?</div>
 
-const getTableTitle = () => {
-  switch (activeTable) {
-    case "Drops":
-      return "Drops Table";
-    case "Purchases":
-      return "Purchases Table";
-    case "Sales":
-      return "Sales Table";
-    case "Inventory":
-      return "Inventory Table";
-    default:
-      return "";
-  }
-};
+          <div className={styles["radios-container"]}>
+            <input
+              type="radio"
+              value="Inventory"
+              id="Inventory"
+              checked={selectedOption === "Inventory"}
+              onChange={() => setSelectedOption("Inventory")}
+            />
+            <label htmlFor="Inventory" className={styles.labels}>
+              Inventory
+            </label>
 
-return (
-  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-    <div className="button-container">
-      <Button onClick={() => toggleTable("Drops")}>Show Drops</Button>
-      <Button onClick={() => toggleTable("Purchases")}>Show Purchases</Button>
-      <Button onClick={() => toggleTable("Sales")}>Show Sales</Button>
-      <Button onClick={() => toggleTable("Inventory")}>Show Inventory</Button>
-    </div>
+            <input
+              type="radio"
+              value="Purchases"
+              id="Purchases"
+              checked={selectedOption === "Purchases"}
+              onChange={() => setSelectedOption("Purchases")}
+            />
+            <label htmlFor="Purchases" className={styles.labels}>
+              Purchases
+            </label>
 
-    <div className="title-container">
-      <h2>{getTableTitle()}</h2>
-    </div>
-
-    <div className="table-container">
-    <ThemeProvider theme={darkTheme}>
-      {activeTable === "Drops" && (
-        <MaterialReactTable columns={dropColumns} data={data.drops} />
-      )}
-      {activeTable === "Purchases" && (
-        <MaterialReactTable columns={purchaseColumns} data={data.purchases} />
-      )}
-      {activeTable === "Sales" && (
-        <MaterialReactTable columns={saleColumns} data={data.sales} />
-      )}
-      {activeTable === "Inventory" && (
-        <MaterialReactTable columns={Inventorycolumns} data={data.nfts} />
-      )}
-    </ThemeProvider>
-    </div>
-  </div>
-);
+            <input
+              type="radio"
+              value="Sales"
+              id="Sales"
+              checked={selectedOption === "Sales"}
+              onChange={() => setSelectedOption("Sales")}
+            />
+            <label htmlFor="Sales" className={styles.labels}>
+              Sales
+            </label>
+            <input
+              type="radio"
+              value="Drops"
+              id="Drops"
+              checked={selectedOption === "Drops"}
+              onChange={() => setSelectedOption("Drops")}
+            />
+            <label htmlFor="Drops" className={styles.labels}>
+              Drops
+            </label>
+          </div>
+        </div>
+        <ThemeProvider theme={darkTheme}>
+          {selectedOption === "Drops" ? (
+            <MaterialReactTable
+              columns={dropColumns}
+              data={data.drops}
+              enableColumnOrdering
+              enableGrouping
+            />
+          ) : null}
+          {selectedOption === "Purchases" ? (
+            <MaterialReactTable
+              columns={purchaseColumns}
+              data={data.purchases}
+              enableColumnOrdering
+              enableGrouping
+            />
+          ) : null}
+          {selectedOption === "Sales" ? (
+            <MaterialReactTable
+              columns={saleColumns}
+              data={data.sales}
+              enableColumnOrdering
+              enableGrouping
+            />
+          ) : null}
+          {selectedOption === "Inventory" ? (
+            <MaterialReactTable
+              columns={Inventorycolumns}
+              data={data.nfts}
+              enableColumnOrdering
+              enableGrouping
+            />
+          ) : null}
+        </ThemeProvider>
+      </div>
+    </>
+  );
 }

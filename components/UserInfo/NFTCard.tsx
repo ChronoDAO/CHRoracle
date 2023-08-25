@@ -1,4 +1,5 @@
 "use client";
+import styles from './userCard.module.scss'
 import React from "react";
 interface NFT {
   id: number;
@@ -58,11 +59,16 @@ const NFTCard: React.FC<CardProps> = ({
   sumFloorPrice = Number(sumFloorPrice.toFixed(2)); // Convert to a fixed number
   return (
     <>
-      <div >
+      <div className={styles["container"]}>
         <ul>
-          <li>Total NFTs : {totalNFTs} for around {sumFloorPrice.toLocaleString()} $</li>
+          <li>
+            Total NFTs : {totalNFTs} for around {sumFloorPrice.toLocaleString()}{" "}
+            $
+          </li>
           <li>Including {totalDropNFT} looted himself</li>
           <li>and {uniqueNFTs} unique items.</li>
+        </ul>
+        <ul>
           <li>
             Purchases/Sales balance:
             {Number(user.balance.toFixed(2)).toLocaleString()} $
