@@ -59,7 +59,7 @@ const NFTCard: React.FC<CardProps> = ({
   sumFloorPrice = Number(sumFloorPrice.toFixed(2)); // Convert to a fixed number
   return (
     <>
-      <div className={styles["container"]}>
+      {totalNFTs>0 ? <div >
         <ul>
           <li>
             Total NFTs : {totalNFTs} for around {sumFloorPrice.toLocaleString()}{" "}
@@ -82,7 +82,10 @@ const NFTCard: React.FC<CardProps> = ({
             $
           </li>
         </ul>
-      </div>
+      </div> : <><h3>{user.name} doesn't have any nfts right now.</h3>
+      <h3>His total purchase/sale balance is : Purchases/Sales balance:
+            {Number(user.balance.toFixed(2)).toLocaleString()} $</h3></>
+      }
     </>
   );
 };
