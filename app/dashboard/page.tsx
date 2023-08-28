@@ -1,9 +1,9 @@
 import { getSalesByDay } from "@/lib/prisma/sales-by-day";
 import { getLast24hSales } from "@/lib/sales-last-24h";
 import Sales from "@/components/Sales/Sales";
-import {getNftItem } from "@/lib/sales-with-nft-info"
+import {getNftItem } from "@/lib/prisma/sales-with-nft-info"
 import RecentSalesByCategory from '@/components/RecentSalesByCategory/RecentSalesByCategory'
-import { getCategories } from "@/lib/categories";
+import { getCategories } from "@/lib/prisma/categories";
 
 export default async function Dashboard() {
 
