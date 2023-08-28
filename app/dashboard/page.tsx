@@ -2,7 +2,7 @@ import { getSalesByDay } from "@/lib/sales-by-day";
 import { getLast24hSales } from "@/lib/sales-last-24h";
 import Sales from "@/components/Sales/Sales";
 import {getNftItem } from "@/lib/sales-with-nft-info"
-import LatestSalesByCategory from '@/components/LatestSalesByCategory/LatestSalesByCategory'
+import RecentSalesByCategory from '@/components/RecentSalesByCategory/RecentSalesByCategory'
 import { getCategories } from "@/lib/categories";
 
 export default async function Dashboard() {
@@ -17,9 +17,8 @@ export default async function Dashboard() {
    
     <>
       {/* @ts-ignore */}
- 
 
-      <LatestSalesByCategory data={sales} categories = {categories}/>
+      <RecentSalesByCategory data={sales} categories = {categories}/>
 
       <Sales data={salesByDay} data24h={last24hsales}/>
 

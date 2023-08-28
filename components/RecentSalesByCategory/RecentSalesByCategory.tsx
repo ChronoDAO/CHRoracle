@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./latestSales.module.scss";
+import styles from "./RecentSalesByCategory.module.scss";
 import RecentSaleCard from "../salesCard/RecentSaleCard";
 
-const LatestSalesByCategory = ({ data, categories }) => {
+const RecentSalesByCategory = ({ data, categories }) => {
   const [selectedOption, setSelectedOption] = useState("all");
 
   const filteredData =
@@ -68,4 +68,4 @@ console.dir(firstFiveItems, {depth: null})
   );
 };
 
-export default LatestSalesByCategory;
+export default RecentSalesByCategory;
