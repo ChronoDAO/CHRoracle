@@ -9,7 +9,12 @@ import styles from "./salesByDay.module.scss";
 am4core.useTheme(am4themes_animated);
 am4core.useTheme(am4themes_dark);
 
-export default function SalesByDayChart({ data }: { data: any }) {
+type salesByDayProps = {
+  data: any,
+  data24h: any
+}
+
+export default function SalesByDayChart({ data, data24h }: salesByDayProps ) {
   const [selectedOption, setSelectedOption] = useState("all");
 
   useEffect(() => {
