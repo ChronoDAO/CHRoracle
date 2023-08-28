@@ -1,5 +1,5 @@
 
-import prisma from "./prisma";
+import prisma from "./prisma/prisma";
 
 export async function getSalesByMinutes( string: string) {
   try {
