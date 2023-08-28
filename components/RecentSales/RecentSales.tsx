@@ -1,5 +1,8 @@
+import React from 'react';
 import RecentSaleCard from "../salesCard/RecentSaleCard";
+import FilterCards from "../filterCards/FiterCards";
 import styles from "./recentSales.module.scss";
+
 interface NFT {
   id: number;
   composedId: string;
@@ -46,7 +49,14 @@ interface Item {
   nfts: NFT[];
 }
 
-export default function ({ data }: { data: Sale[] }) {
+const RecentSales: React.FC<{ data: Sale[] }> = ({ data }) => {
+  
+  const handleFilterChange = (selectedFilter: string) => {
+    if (selectedFilter !== 'All') {
+      data = data.filter(sale => sale.nft.item.name === selectedFilter);
+    }
+  };
+
   const formattedSalesData = data.map((sale) => ({
     price: sale.price,
     date: sale.date,
@@ -60,9 +70,10 @@ export default function ({ data }: { data: Sale[] }) {
   return (
     <div className={styles["resent-sales-container"]}>
       <div className={styles["title-container"]}>
-        <div className={styles.title}>Resent sales</div>
+        <div className={styles.title}>Recent sales</div>
+        <FilterCards onFilterChange={handleFilterChange} />
       </div>
-
+      
       <div className={styles["cards-container"]}>
         {formattedSalesData.map((vente, index) => (
           <RecentSaleCard key={index} {...vente} />
@@ -71,3 +82,6 @@ export default function ({ data }: { data: Sale[] }) {
     </div>
   );
 }
+
+export default RecentSales;
+
