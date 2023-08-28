@@ -1,11 +1,9 @@
 import React from "react";
 import styles from "./notFound.module.scss";
 
-interface UsernameNotFoundProps {
-  username: string;
-}
 
-const UsernameNotFound: React.FC<UsernameNotFoundProps> = ({ username }) => {
+
+const UsernameNotFound = ( {username}:{username : string} ) => {
   return (
     <div className={styles.container}>
       <div className={styles.message}>
