@@ -1,0 +1,63 @@
+.latest-sales-container {
+  margin: 2rem 0;
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.33333333);
+  border-radius: 20px;
+  background: rgba(21, 21, 25, 0.691);
+  padding: 2rem 1rem 1rem 1rem;
+ 
+
+  .sales-header {
+ 
+    .sales-title {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .radios-container {
+      display: flex;
+      grid-gap: 10px;
+      min-height: 90px;
+      justify-items: center;
+      flex-wrap: wrap;
+
+      .input-and-label-container{
+        margin-top: 1.7rem;
+  
+        input[type="radio"]:checked + label {
+          /* Apply styles for checked state */
+          background-color: #314040;
+        }
+  
+        input[type="radio"] {
+          display: none;
+        }
+  
+        label {
+          background-color: #0c131b;
+          color: white;
+          border: 2px solid #090b0d;
+          padding: 15px 25px;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          margin-top: 3rem;
+         
+  
+          &:hover {
+            background: #447c66;
+          }
+        }
+      }
+    }
+  }
+
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40vh;
+    padding: 10px;
+  }
+}

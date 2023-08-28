@@ -57,6 +57,7 @@ export default function ({ data }: { data: Sale[] }) {
     imageUrl: sale.nft.item.imageUrl,
   }));
 
+
   return (
     <div className={styles["resent-sales-container"]}>
       <div className={styles["title-container"]}>

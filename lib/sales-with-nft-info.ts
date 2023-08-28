@@ -2,12 +2,11 @@ import prisma from "./prisma";
 
 export async function getNftItem() {
     try {
-        const categories = await prisma.category.findMany()
         const sales = await prisma.sale.findMany({
           orderBy: {
             date: "desc",
           },
-          take: 2,
+          take: 100,
           include: {
             nft: {
               include: {
@@ -33,20 +32,21 @@ export async function getNftItem() {
           toUser: sale.toUser,
           nft: {
             issuedId: sale.nft?.issuedId,
-            itemName: sale.nft?.item?.name,
-            imageUrl: sale.nft?.item?.imageUrl,
-            rarityName: sale.nft?.item?.rarityName,
-            categories: sale.nft?.item?.categories.map(category => category.name),
+            item: {
+              name: sale.nft?.item?.name,
+              imageUrl: sale.nft?.item?.imageUrl,
+              rarityName: sale.nft?.item?.rarityName,
+              categories: sale.nft?.item?.categories.map(category => category.name),
+            }     
           },
         };
   
         salesNFTitem.push(newSaleObject);
       }
   
-      return {
-        sales: salesNFTitem,
-        categories: categories,
-      };
+      return salesNFTitem
+
+
   
       
     } catch (error) {
