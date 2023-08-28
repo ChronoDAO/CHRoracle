@@ -45,9 +45,6 @@ export async function getNftItem() {
       }
   
       return salesNFTitem
-
-
-  
       
     } catch (error) {
       console.error("Error:", error);

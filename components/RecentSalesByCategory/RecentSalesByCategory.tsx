@@ -3,7 +3,33 @@ import React, { useState } from "react";
 import styles from "./RecentSalesByCategory.module.scss";
 import RecentSaleCard from "../salesCard/RecentSaleCard";
 
-const RecentSalesByCategory = ({ data, categories }) => {
+interface Sale {
+  id: number;
+  price: number;
+  date: Date;
+  fromUser: string;
+  toUser: string;
+  nft: {
+    issuedId: number;
+    item: {
+      name: string;
+      imageUrl: string;
+      rarityName: string;
+      categories: string[];
+    };
+  };
+}
+
+interface Category {
+  name: string;
+}
+
+interface Props {
+  data: Sale[];
+  categories: Category[];
+}
+
+const RecentSalesByCategory: React.FC<Props> = ({ data, categories })  => {
   const [selectedOption, setSelectedOption] = useState("all");
 
   const filteredData =
@@ -13,7 +39,6 @@ const RecentSalesByCategory = ({ data, categories }) => {
 
 
   const firstFiveItems = filteredData.slice(0, 5)
-console.dir(firstFiveItems, {depth: null})
 
   return (
     <div className={styles["latest-sales-container"]}>
@@ -33,9 +58,9 @@ console.dir(firstFiveItems, {depth: null})
               />
               <label htmlFor="all"> All </label>
             </div>
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <div
-              key={category.id}
+              key={index}
               className={styles["input-and-label-container"]}
             >
               <input
