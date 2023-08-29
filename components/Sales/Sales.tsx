@@ -11,7 +11,7 @@ type SalesProps = {
 
 
 export default function Sales({ data, data24h }: SalesProps){
-  const [selectedOption, setSelectedOption] = useState("all");
+  const [selectedTime, setSelectedTime] = useState("allChart");
 
   return (
     <div className={styles["sales-hystory-container"]}>
@@ -21,12 +21,12 @@ export default function Sales({ data, data24h }: SalesProps){
         <div className={styles["radios-container"]}>
           <input
             type="radio"
-            value="all"
-            id="all"
-            checked={selectedOption === "all"}
-            onChange={() => setSelectedOption("all")}
+            value="allChart"
+            id="allChart"
+            checked={selectedTime === "allChart"}
+            onChange={() => setSelectedTime("allChart")}
           />
-          <label htmlFor="all" className={styles.labels}>
+          <label htmlFor="allChart" className={styles.labels}>
             All Sales
           </label>
 
@@ -34,8 +34,8 @@ export default function Sales({ data, data24h }: SalesProps){
             type="radio"
             value="last30days"
             id="last30days"
-            checked={selectedOption === "last30days"}
-            onChange={() => setSelectedOption("last30days")}
+            checked={selectedTime === "last30days"}
+            onChange={() => setSelectedTime("last30days")}
           />
           <label htmlFor="last30days" className={styles.labels}>
             30 Days
@@ -45,8 +45,8 @@ export default function Sales({ data, data24h }: SalesProps){
             type="radio"
             value="last7days"
             id="last7days"
-            checked={selectedOption === "last7days"}
-            onChange={() => setSelectedOption("last7days")}
+            checked={selectedTime === "last7days"}
+            onChange={() => setSelectedTime("last7days")}
           />
           <label htmlFor="last7days" className={styles.labels}>
             7 Days
@@ -55,18 +55,18 @@ export default function Sales({ data, data24h }: SalesProps){
             type="radio"
             value="last24h"
             id="last24h"
-            checked={selectedOption === "last24h"}
-            onChange={() => setSelectedOption("last24h")}
+            checked={selectedTime === "last24h"}
+            onChange={() => setSelectedTime("last24h")}
           />
           <label htmlFor="last24h" className={styles.labels}>
             24 h
           </label>
         </div>
       </div>
-      {selectedOption === "all" ? <SalesByDaysChart data={data}/> : null}
-      {selectedOption === "last30days" ? <SalesByDaysChart data={data.slice(-30)}/> : null}
-      {selectedOption === "last7days" ? <SalesByDaysChart data={data.slice(-7)}/> : null}
-      {selectedOption === "last24h" ? <SalesByHourChart data24h={data24h}/> : null}
+      {selectedTime === "allChart" ? <SalesByDaysChart data={data}/> : null}
+      {selectedTime === "last30days" ? <SalesByDaysChart data={data.slice(-30)}/> : null}
+      {selectedTime === "last7days" ? <SalesByDaysChart data={data.slice(-7)}/> : null}
+      {selectedTime === "last24h" ? <SalesByHourChart data24h={data24h}/> : null}
     </div>
   );
 }
