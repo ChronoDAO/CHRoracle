@@ -90,10 +90,10 @@ export default function UserCard({ data }: { data: User }) {
           //@ts-ignore
           user={userInfo.user}
         />
-        <ClientPie
+        {/* <ClientPie
           user={userInfo.user}
           uniqueNFTCount={userInfo.uniqueNFTCount}
-        /> 
+        />  */}
       </div>
     </>
   );
