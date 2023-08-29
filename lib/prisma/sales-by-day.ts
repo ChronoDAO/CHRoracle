@@ -6,7 +6,6 @@ export const getSalesByDay = async () => {
           date: "asc",
         },
       });
-   
   
       const salesModifiedDate = sales.map((sale) => {
         const date = sale.date;
@@ -52,5 +51,5 @@ export const getSalesByDay = async () => {
     };
     aggregatedSales.push(objectFormat);
 
-  return aggregatedSales;
+  return aggregatedSales ;
 };
