@@ -1,4 +1,4 @@
-import prisma from "./prisma";
+import prisma from "./prisma/prisma";
 
 export const getSalesByDay = async () => {
     const sales = await prisma.sale.findMany({
@@ -6,6 +6,7 @@ export const getSalesByDay = async () => {
           date: "asc",
         },
       });
+   
   
       const salesModifiedDate = sales.map((sale) => {
         const date = sale.date;
@@ -51,5 +52,5 @@ export const getSalesByDay = async () => {
     };
     aggregatedSales.push(objectFormat);
 
-  return aggregatedSales ;
+  return aggregatedSales;
 };
