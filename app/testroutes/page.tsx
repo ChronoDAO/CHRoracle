@@ -1,9 +1,10 @@
+import styles from './loading.module.scss'
+import React from 'react'
 
-export default async function TestRoute() {
-  return (
-    <>
-    <h1>Test route </h1>
-    </>
+export default function Loading () {
+  return(
+    <div className={styles["parent"]}>
+      <div className={styles["demo"]}></div>
+    </div>
   )
-
 }
