@@ -264,6 +264,7 @@ export default function UserHistory({ data }: { data: User }) {
     ],
     []
   );
+  
   const [selectedOption, setSelectedOption] = useState("Inventory");
 
   return (
