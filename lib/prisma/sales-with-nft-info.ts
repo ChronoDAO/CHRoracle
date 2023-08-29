@@ -7,7 +7,7 @@ export async function getSalesByCategory() {
         orderBy: {
           date: "desc",
         },
-        take: 100,
+        take: 32000,
         include: {
           nft: {
             include: {

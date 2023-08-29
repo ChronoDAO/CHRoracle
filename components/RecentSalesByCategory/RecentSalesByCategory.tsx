@@ -34,8 +34,11 @@ const RecentSalesByCategory: React.FC<Props> = ({ data, categories })  => {
 
   const filteredData =
     selectedOption === "all"
-      ? data.slice(0, 5)
+      ? data
       : data.filter((item) => item.nft.item.categories.includes(selectedOption));
+
+
+  const firstFiveItems = filteredData.slice(0, 5)
 
   return (
     <div className={styles["latest-sales-container"]}>
@@ -73,7 +76,7 @@ const RecentSalesByCategory: React.FC<Props> = ({ data, categories })  => {
         </div>
       </div>
       <div className={styles["cards-container"]}>
-        {filteredData.map((sale, index) => (
+        {firstFiveItems.map((sale, index) => (
           <RecentSaleCard
           key={index}
           price={sale.price}
