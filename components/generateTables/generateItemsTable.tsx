@@ -41,16 +41,6 @@ export default function GenerateItemsTable({ data }: { data: Item[] }) {
         ),
       },
       {
-        accessorKey: "archetypeId", //simple recommended way to define a column
-        header: "ID",
-        muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
-        Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
-          <Link href={`/items/${encodeURIComponent(renderedCellValue)}`}>
-            {renderedCellValue}
-          </Link>
-        ), //optional custom cell render
-      },
-      {
         accessorKey: "name", //simple recommended way to define a column
         header: "Name",
         muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props

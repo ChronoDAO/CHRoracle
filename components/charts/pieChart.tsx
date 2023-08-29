@@ -90,21 +90,21 @@ const pieChart: React.FC<{ chartData: ChartData[] }> = ({ chartData }) => {
   };
 
   return (
-    // <PieChart width={500} height={400}>
-    //   <Pie
-    //     activeIndex={activeIndex}
-    //     activeShape={renderActiveShape}
-    //     data={chartData}
-    //     cx={200}
-    //     cy={200}
-    //     innerRadius={60}
-    //     outerRadius={80}
-    //     fill="#87ceeb"
-    //     dataKey="value"
-    //     onMouseEnter={onPieEnter}
-    //   />
-    // </PieChart>
-    <p>piechart ici</p>
+    <PieChart width={500} height={400}>
+      <Pie
+        activeIndex={activeIndex}
+        activeShape={renderActiveShape}
+        data={chartData}
+        cx={200}
+        cy={200}
+        innerRadius={60}
+        outerRadius={80}
+        fill="#87ceeb"
+        dataKey="value"
+        onMouseEnter={onPieEnter}
+      />
+    </PieChart>
+
   );
 };
 
