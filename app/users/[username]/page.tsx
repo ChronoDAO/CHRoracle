@@ -1,6 +1,6 @@
 import React from "react";
 import UsernameNotFound from "@/components/errors/usernameNotFound";
-import { getUserHistory } from "@/lib/prisma/user-history";
+import { getUserHistory } from "@/lib/prismaRequests/user-history";
 import UserHistory from "@/components/generateTables/generateUserHistoryTables";
 import UserCard from "@/components/UserInfo/userInfoCard";
 
