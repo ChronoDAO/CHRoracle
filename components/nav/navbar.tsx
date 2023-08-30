@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./navbar.module.scss";
 import { MdOutlineSpaceDashboard, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { LiaDragonSolid } from "react-icons/lia";
-import { HiUsers } from "react-icons/hi";
+import { HiUsers, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle } from "react-icons/bi";
 import { useState } from "react";
@@ -64,6 +64,14 @@ const nav = () => {
                 <span className={styles["item-title"]}>Items</span>
               </li>
             </Link>
+            <Link href="/auth" className={styles.links}>
+              <li className={styles.item}>
+                <span className={styles["item-icon"]}>
+                  <HiUserCircle />
+                </span>
+                <span className={styles["item-title"]}>Se connecter</span>
+              </li>
+            </Link>
           </ul>
         </div>
       </aside>
@@ -72,3 +80,5 @@ const nav = () => {
 };
 
 export default nav;
+
+// HiUserCircle
