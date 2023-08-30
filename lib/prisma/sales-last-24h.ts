@@ -1,4 +1,4 @@
-import prisma from "./prisma/prisma";
+import prisma from "./prisma";
 
 export async function getLast24hSales( string: string) {
   try {
