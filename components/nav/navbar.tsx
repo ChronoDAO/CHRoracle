@@ -64,7 +64,7 @@ const nav = () => {
                 <span className={styles["item-title"]}>Items</span>
               </li>
             </Link>
-            <Link href="/auth" className={styles.links}>
+            <Link href="/api/auth/signin" className={styles.links}>
               <li className={styles.item}>
                 <span className={styles["item-icon"]}>
                   <HiUserCircle />
