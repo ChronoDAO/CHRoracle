@@ -7,6 +7,7 @@ import { HiUsers, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle } from "react-icons/bi";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 
 const nav = () => {
@@ -15,6 +16,8 @@ const nav = () => {
   const toggleSideBarHandler = () => {
     setIsBarCollapsed((prev) => !prev)
   }
+
+  const session = useSession()
 
   return (
     <div className={styles["sidebar-wrapper"]} data-collapse={isBarCollapsed} >
@@ -25,7 +28,6 @@ const nav = () => {
         <div className={styles["top-sidebar"]} onClick={toggleSideBarHandler }>
           <span className={styles.logo}><LiaDragonSolid size={36}/></span>
           <span className={styles.title}>Chrono Data</span>
-
         </div>
 
         <div className={styles["list-container"]}>
@@ -47,7 +49,6 @@ const nav = () => {
                 <span className={styles["item-title"]}>Dashboard</span>
               </li>
             </Link>
-
             <Link href="/users" className={styles.links}>
               <li className={styles.item}>
                 <span className={styles["item-icon"]}>
@@ -64,14 +65,31 @@ const nav = () => {
                 <span className={styles["item-title"]}>Items</span>
               </li>
             </Link>
-            <Link href="/api/auth/signin" className={styles.links}>
-              <li className={styles.item}>
-                <span className={styles["item-icon"]}>
-                  <HiUserCircle />
-                </span>
-                <span className={styles["item-title"]}>Se connecter</span>
-              </li>
-            </Link>
+            {/* <LoginButton />
+            <LogoutButton /> */}
+            { session ? (
+              <>
+              <Link href="/api/auth/signout" className={styles.links}>
+                <li className={styles.item}>
+                  <span className={styles["item-icon"]}>
+                    <HiUserCircle />
+                  </span>
+                  <span className={styles["item-title"]}>Log out !</span>
+                </li>
+              </Link>
+            </>
+            ) : (
+              <>
+                <Link href="/api/auth/signin" className={styles.links}>
+                  <li className={styles.item}>
+                    <span className={styles["item-icon"]}>
+                      <HiUserCircle />
+                    </span>
+                    <span className={styles["item-title"]}> Log in </span>
+                  </li>
+                </Link>
+              </>
+            )}
           </ul>
         </div>
       </aside>
