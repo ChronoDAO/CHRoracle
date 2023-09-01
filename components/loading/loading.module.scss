@@ -472,8 +472,10 @@
 
 .text-container {
   display: flex;
+  flex-direction: column;
   font-size: x-large;
   justify-content: center;
+  align-items: center;
 }
 
 .loading {

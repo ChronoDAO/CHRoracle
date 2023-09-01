@@ -1,6 +1,10 @@
 import styles from './loading.module.scss'
 
-const  loadingComponent = () => {
+interface PageProps {
+	page: string;
+}
+
+const  loadingComponent:React.FC<PageProps> = ({ page }) => {
   return(
 		<div className={styles["loading"]}>
 			<div className={styles["hourglassBackground"]}>
@@ -15,7 +19,8 @@ const  loadingComponent = () => {
 				</div>
 			</div>
 			<div className={styles["text-container"]}>
-				<p>Chargement en cours</p>
+				<p>Charging</p>
+				<p>Loading page {page}</p>
 			</div>
     </div>
   )
