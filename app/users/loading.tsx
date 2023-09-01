@@ -1,5 +1,7 @@
 import LoadingComponent from '@/components/loading/loading'
 
 export default function Loading () {
-  return(<LoadingComponent />)
+  const users = "Users"
+
+  return(<LoadingComponent page={users} />)
 }
