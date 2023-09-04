@@ -65,31 +65,6 @@ const nav = () => {
                 <span className={styles["item-title"]}>Items</span>
               </li>
             </Link>
-            {/* <LoginButton />
-            <LogoutButton /> */}
-            {/* { session ? (
-              <>
-              <Link href="/api/auth/signout" className={styles.links}>
-                <li className={styles.item}>
-                  <span className={styles["item-icon"]}>
-                    <HiUserCircle />
-                  </span>
-                  <span className={styles["item-title"]}>Log out !</span>
-                </li>
-              </Link>
-            </>
-            ) : (
-              <>
-                <Link href="/api/auth/signin" className={styles.links}>
-                  <li className={styles.item}>
-                    <span className={styles["item-icon"]}>
-                      <HiUserCircle />
-                    </span>
-                    <span className={styles["item-title"]}> Log in </span>
-                  </li>
-                </Link>
-              </>
-            )} */}
           </ul>
         </div>
       </aside>
