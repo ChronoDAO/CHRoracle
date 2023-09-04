@@ -67,7 +67,7 @@ const nav = () => {
             </Link>
             {/* <LoginButton />
             <LogoutButton /> */}
-            { session ? (
+            {/* { session ? (
               <>
               <Link href="/api/auth/signout" className={styles.links}>
                 <li className={styles.item}>
@@ -89,7 +89,7 @@ const nav = () => {
                   </li>
                 </Link>
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </aside>
