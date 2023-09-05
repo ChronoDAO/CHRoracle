@@ -1,15 +1,15 @@
-
-import { useRouter } from 'next/router';
 import searchUser from '@/lib/prisma/searchUser';
-
-export default async function SearchResultPage  ()  {
-    const router = useRouter();
-    const { searchQuery } = router.query;
+type Params = {
+  params: {
+    query: string
+  }
+}
+export default async function SearchResultPage  ({ params: { query }}: Params)  {
     //@ts-ignore 
-  const results = await searchUser(searchQuery);
+  const results = await searchUser(query);
     return (
       <div>
-        <h1>Search Results for: {searchQuery}</h1>
+        <h1>Search Results for: {query}</h1>
         
         {/* Render search results */}
         <ul>
@@ -21,4 +21,3 @@ export default async function SearchResultPage  ()  {
     );
   };
   
-   

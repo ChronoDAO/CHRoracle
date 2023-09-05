@@ -1,18 +1,16 @@
 'use client'
 import React, { useState } from 'react';
 import styles from './SearchBar.module.scss';
-import searchUser from '../../lib/prisma/searchUser';
+import { useRouter } from 'next/navigation';
 
-interface PropsBarreRecherche {
-  initialValue: string;
-}
 
-const SearchBar: React.FC<PropsBarreRecherche> = ({ initialValue }) => {
-  const [searchText, setSearchText] = useState(initialValue);
+const SearchBar = () => {
+  const router = useRouter();
+  const [searchText, setSearchText] = useState('');
 
-  const handleSearch = async () => {
-    const users = await searchUser();
-    console.log(users);
+  const handleSearch = async (event:any) => {
+    event.preventDefault();
+    router.push(`/search/${searchText}`);
   };
 
   return (

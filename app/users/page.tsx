@@ -8,7 +8,7 @@ export default async function Users() {
 
   return (
     <div>
-      <SearchBar initialValue="" />
+      <SearchBar />
       <GenerateUsersTable data={users} />
     </div>
   );
