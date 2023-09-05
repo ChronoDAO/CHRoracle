@@ -1,7 +1,7 @@
 import Navbar from "../components/nav/navbar";
 import type { Metadata } from 'next'
 import "../styles/globals.scss";
-import { NextAuthProvider } from "./providers";
+// import { NextAuthProvider } from "./providers";
 
 
 export const metadata: Metadata = {
@@ -17,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>
+        {/* <NextAuthProvider> */}
           <Navbar />
           <div className="app-content-container">
             {children}
           </div>
-        </NextAuthProvider>
+        {/* </NextAuthProvider> */}
       </body>
     </html>
   )
