@@ -26,8 +26,8 @@ $navbar-item-background: rgb(6, 6, 6);
     cursor: pointer;
     transform: translateX(50%);
     font-size: 1.1rem;
-
-    &:hover {
+   
+    &:hover{
       color: rgba(42, 208, 39, 0.75);
       border-color: rgba(42, 208, 39, 0.75);
     }
@@ -102,10 +102,9 @@ $navbar-item-background: rgb(6, 6, 6);
   }
 
   &[data-collapse="true"] {
-    .btn {
-      transform: translateX(50%) scaleX(-1);
-    }
-
+   .btn{
+    transform: translateX(50%) scaleX(-1);
+   }
     .sidebar {
       width: 5rem;
 

@@ -6,9 +6,10 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
 import { LiaDragonSolid } from "react-icons/lia";
-import { HiUsers } from "react-icons/hi";
+import { HiUsers, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle,} from "react-icons/bi";
+//import { useSession } from "next-auth/react";
 
 import { useState } from "react";
 
@@ -18,6 +19,8 @@ const nav = () => {
   const toggleSideBarHandler = () => {
     setIsBarCollapsed((prev) => !prev);
   };
+
+ // const session = useSession()
 
   return (
     <div className={styles["sidebar-wrapper"]} data-collapse={isBarCollapsed}>
@@ -52,7 +55,8 @@ const nav = () => {
               </li>
             </Link>
 
-            <Link href="/users">
+          
+            <Link href="/users" className={styles.links}>
               <li className={styles.item}>
                 <span className={styles["item-icon"]}>
                   <HiUsers />
