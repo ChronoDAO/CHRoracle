@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const handleSearch = async (event:any) => {
     event.preventDefault();
-    router.push(`/search/${searchText}`);
+    router.push(`/users/${searchText}`);
   };
 
   return (
@@ -19,14 +19,15 @@ const SearchBar = () => {
         type="text"
         value={searchText}
         onChange={e => setSearchText(e.target.value)}
-        placeholder="Entrez le nom de l'utilisateur"
+        placeholder=" Enter your user name "
       />
-      <button onClick={handleSearch}>Chercher</button>
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
 };
 
 export default SearchBar;
+
 
 
 

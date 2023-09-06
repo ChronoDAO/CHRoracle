@@ -8,8 +8,8 @@ import {
 import { LiaDragonSolid } from "react-icons/lia";
 import { HiUsers } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
-import { BiSolidCastle, BiSearchAlt } from "react-icons/bi";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { BiSolidCastle,} from "react-icons/bi";
+
 import { useState } from "react";
 
 const nav = () => {
@@ -70,25 +70,7 @@ const nav = () => {
               </li>
             </Link>
 
-            <li className={styles.item}>
-              <span className={styles["item-icon"]}>
-                <BiSearchAlt2 />
-              </span>
-              {!isBarCollapsed && (
-                <>
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className={styles["search-input"]}
-                  />
-                  <Link href="/searchresult" className={styles.links}>
-                    <button className={styles["search-btn"]}>
-                    <BiSearchAlt2 />
-                    </button>
-                  </Link>
-                </>
-              )}
-            </li>
+           
           </ul>
         </div>
       </aside>
@@ -97,3 +79,4 @@ const nav = () => {
 };
 
 export default nav;
+

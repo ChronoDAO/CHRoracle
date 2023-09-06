@@ -1,13 +1,12 @@
 @import "../../styles/colors";
 
 $navbar-background: rgb(6, 6, 6);
-$navbar-item-background:rgb(6, 6, 6);
+$navbar-item-background: rgb(6, 6, 6);
 
 .sidebar-wrapper {
-  position: relative;
-  position: fixed; 
+  position: fixed;
   z-index: 3;
-  top: 0; 
+  top: 0;
   left: 0;
   height: 100%;
 
@@ -15,23 +14,22 @@ $navbar-item-background:rgb(6, 6, 6);
     position: absolute;
     right: 0;
     top: 4.7rem;
-    border: none;
+    border: 1px solid #e5e7eb;
     background-color: $navbar-item-background;
     color: whitesmoke;
     width: 1.5rem;
     height: 1.5rem;
-    border: 1px solid #e5e7eb;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transform: translateX(50%) ;
+    transform: translateX(50%);
     font-size: 1.1rem;
-   
-    &:hover{
+
+    &:hover {
       color: rgba(42, 208, 39, 0.75);
-      border: 1px solid rgba(42, 208, 39, 0.75);
+      border-color: rgba(42, 208, 39, 0.75);
     }
   }
 
@@ -42,7 +40,7 @@ $navbar-item-background:rgb(6, 6, 6);
     padding: 1rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
 
-    .top-sidebar{
+    .top-sidebar {
       width: max-content;
       display: flex;
       justify-content: center;
@@ -82,49 +80,41 @@ $navbar-item-background:rgb(6, 6, 6);
         border-radius: 0.8rem;
         margin-bottom: 1rem;
         align-items: center;
-       
 
         .item-logo {
           display: flex;
           align-items: center;
           color: gray;
         }
+        
         .item-title {
           margin-left: 0.5rem;
           text-transform: capitalize;
           opacity: 1;
-          
         }
 
-        &:hover{
+        &:hover {
           background: $color-nigth-blue2;
           color: rgba(42, 208, 39, 0.75);
         }
       }
     }
   }
+
   &[data-collapse="true"] {
-   .btn{
-    transform: translateX(50%) scaleX(-1);
-   }
+    .btn {
+      transform: translateX(50%) scaleX(-1);
+    }
+
     .sidebar {
       width: 5rem;
 
-      .top-sidebar{
-        .title{
-          opacity: 0;
-          display: none;
-        }
-      }
-
-      .list-items {
-        .item {
-          .item-title {
-            opacity: 0;
-            display: none;
-          }
-        }
+      .top-sidebar .title,
+      .list-items .item .item-title {
+        opacity: 0;
+        display: none;
       }
     }
   }
 }
+
