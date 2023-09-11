@@ -14,7 +14,7 @@ export default async function SearchResultPage({ params: { query } }: Params) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Résultats de recherche pour : {query}</h1>
+      <h1 className={styles.title}> Search results : {query}</h1>
 
       <ul className={styles.userList}>
         {results.map((result) => (
