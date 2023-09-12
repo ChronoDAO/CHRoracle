@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const handleSearch = async (event:any) => {
     event.preventDefault();
-    router.push(`/users/${searchText}`);
+    router.push(`/search/${searchText}`);
   };
 
   return (
