@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import styles from "./SearchBar.module.scss";
 import { useRouter } from "next/navigation";
 
-const SearchBar = ({ searchPath = "/search" }) => {
+const SearchBar = ({
+  searchPath = "/search",
+  placeholderText = "Enter a search term",
+}) => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
 
@@ -18,7 +21,7 @@ const SearchBar = ({ searchPath = "/search" }) => {
         type="text"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        placeholder=" Enter your user name "
+        placeholder={placeholderText}
       />
       <button onClick={handleSearch}>Search</button>
     </div>

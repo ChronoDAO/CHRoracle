@@ -8,7 +8,7 @@ export default async function Users() {
 
   return (
     <div>
-      <SearchBar searchPath="/searchUser" />
+      <SearchBar searchPath="/searchUser" placeholderText="Enter user name" />
       <GenerateUsersTable data={users} />
     </div>
   );

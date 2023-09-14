@@ -8,7 +8,7 @@ export default async function Items() {
 
   return (
     <>
-      <SearchBar searchPath="/searchItem" />
+      <SearchBar searchPath="/searchItem" placeholderText="Enter item name" />
 
       {/* @ts-ignore */}
 
