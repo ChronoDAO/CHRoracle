@@ -1,6 +1,6 @@
-import React from 'react';
-import GenerateUsersTable from '@/components/generateTables/generateUsersTable';
-import SearchBar from '@/components/Search/SearchBar'; 
+import React from "react";
+import GenerateUsersTable from "@/components/generateTables/generateUsersTable";
+import SearchBar from "@/components/Search/SearchBar";
 import prisma from "../../lib/prisma/prisma";
 
 export default async function Users() {
@@ -8,11 +8,8 @@ export default async function Users() {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar searchPath="/searchUser" />
       <GenerateUsersTable data={users} />
     </div>
   );
 }
-
-
-

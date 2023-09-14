@@ -1,16 +1,15 @@
-'use client'
-import React, { useState } from 'react';
-import styles from './SearchBar.module.scss';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import styles from "./SearchBar.module.scss";
+import { useRouter } from "next/navigation";
 
-
-const SearchBar = () => {
+const SearchBar = ({ searchPath = "/search" }) => {
   const router = useRouter();
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
-  const handleSearch = async (event:any) => {
+  const handleSearch = async (event: any) => {
     event.preventDefault();
-    router.push(`/search/${searchText}`);
+    router.push(`${searchPath}/${searchText}`);
   };
 
   return (
@@ -18,7 +17,7 @@ const SearchBar = () => {
       <input
         type="text"
         value={searchText}
-        onChange={e => setSearchText(e.target.value)}
+        onChange={(e) => setSearchText(e.target.value)}
         placeholder=" Enter your user name "
       />
       <button onClick={handleSearch}>Search</button>
@@ -27,12 +26,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-
-
-
-
-
-
-
-
