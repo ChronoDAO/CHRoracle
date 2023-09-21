@@ -1,0 +1,14 @@
+.container {
+    background-color: rgba(34, 34, 34, 0.577);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+
+    .user-name{
+        text-transform: capitalize;
+    }
+
+    .info-container{
+        line-height: 1.7;
+    }
+}
