@@ -1,22 +1,19 @@
-"use client";
-import React, { useEffect } from "react";
-import { init } from "@socialgouv/matomo-next";
+import React, { FC } from "react";
+import MatomoTracker from "./../components/Matomo/MatomoTracker";
 
-const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL || "";
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID || "";
-
-type MyProps = {
-  children?: React.ReactNode;
-};
-
-function MyAppProvider({ children }: MyProps) {
-  useEffect(() => {
-    if (MATOMO_URL && MATOMO_SITE_ID) {
-      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID });
-    }
-  }, []);
-
-  return <>{children}</>;
+interface ProvidersProps {
+  children: React.ReactNode;
 }
 
-export default MyAppProvider;
+const Providers: FC<ProvidersProps> = ({ children }) => {
+  return (
+    <>
+      <MatomoTracker />
+      {/* <SomeProvider> */}
+      {children}
+      {/* </SomeProvider> */}
+    </>
+  );
+};
+
+export default Providers;
