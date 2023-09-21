@@ -1,4 +1,3 @@
-import React from "react";
 import PlayerNameNotFound from "@/components/errors/playernameNotFound";
 import { getPlayerHistory } from "@/lib/prisma/player-history";
 import PlayerHistory from "@/components/generateTables/generatePlayerHistoryTables";
