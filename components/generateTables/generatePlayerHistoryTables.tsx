@@ -62,15 +62,6 @@ export default function PlayerHistory({ data }: { data: Player }) {
   const dropColumns = useMemo<MRT_ColumnDef<Drop>[]>(
     () => [
       {
-        accessorKey: "nft.issuedId", //simple recommended way to define a column
-        header: "issuedId",
-        muiTableHeadCellProps: { sx: { color: "gray" } }, //custom props
-        //@ts-ignore
-        Cell: ({ renderedCellValue }: { renderedCellValue: number }) => (
-          <strong>{renderedCellValue}</strong>
-        ), //optional custom cell render
-      },
-      {
         accessorKey: "nft.item.imageUrl",
         header: "Image",
         size: 50,
@@ -249,6 +240,11 @@ export default function PlayerHistory({ data }: { data: Player }) {
       {
         accessorKey: "item.name",
         header: "Item Name",
+      },
+      {
+        accessorKey: "issuedId",
+        size: 50,
+        header: "NFT ID",
       },
       {
         accessorKey: "item.floorPrice",
