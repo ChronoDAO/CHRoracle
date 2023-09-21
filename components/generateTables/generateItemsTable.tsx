@@ -13,7 +13,6 @@ interface Item {
   imageUrl: string;
   floorPrice: number;
   maxIssuance: number;
-  setName: string | null;
   rarityName: string;
   collectionName: string | null;
   optionName: string;
