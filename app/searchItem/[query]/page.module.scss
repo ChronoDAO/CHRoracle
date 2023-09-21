@@ -1,0 +1,45 @@
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #0e1014;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  color: #ffffffe4;
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid #007bff;
+    padding-bottom: 10px;
+  }
+
+  .itemList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    .item {
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      background-color: rgba(0, 123, 255, 0.1);
+
+      &:hover {
+        background-color: rgba(0, 123, 255, 0.2);
+      }
+
+      .itemLink {
+        text-decoration: none;
+        color: #ffffffe4;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+  }
+}

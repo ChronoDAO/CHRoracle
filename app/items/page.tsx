@@ -1,5 +1,6 @@
-import React from 'react';
-import GenerateItemsTable from '@/components/generateTables/generateItemsTable';
+import React from "react";
+import GenerateItemsTable from "@/components/generateTables/generateItemsTable";
+import SearchBar from "@/components/Search/SearchBar";
 import prisma from "@/lib/prisma/prisma";
 
 export default async function Items() {
@@ -7,10 +8,11 @@ export default async function Items() {
 
   return (
     <>
-    {/* @ts-ignore */}
+      <SearchBar searchPath="/searchItem" placeholderText="Enter item name" />
+
+      {/* @ts-ignore */}
 
       <GenerateItemsTable data={items} />
-
     </>
   );
 }
