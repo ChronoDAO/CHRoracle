@@ -104,7 +104,6 @@ const pieChart: React.FC<{ chartData: ChartData[] }> = ({ chartData }) => {
         onMouseEnter={onPieEnter}
       />
     </PieChart>
-
   );
 };
 
