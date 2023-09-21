@@ -238,13 +238,13 @@ export default function PlayerHistory({ data }: { data: Player }) {
         },
       },
       {
-        accessorKey: "item.name",
-        header: "Item Name",
-      },
-      {
         accessorKey: "issuedId",
         size: 50,
         header: "NFT ID",
+      },
+      {
+        accessorKey: "item.name",
+        header: "Item Name",
       },
       {
         accessorKey: "item.floorPrice",
