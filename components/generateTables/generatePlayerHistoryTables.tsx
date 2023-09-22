@@ -1,13 +1,14 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { MaterialReactTable } from "material-react-table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Link from "next/link";
 import { MRT_ColumnDef } from "material-react-table";
-import styles from "./UserHistory.module.scss"; // Import your CSS/SCSS file
+import styles from "./PlayerHistory.module.scss"; // Import your CSS/SCSS file
 import { Modal, Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+
 interface NFT {
   id: number;
   composedId: string;
@@ -16,7 +17,7 @@ interface NFT {
   archetypeId: string;
 }
 
-interface User {
+interface Player {
   id: number;
   name: string;
   nfts: NFT[];
@@ -29,7 +30,6 @@ interface Item {
   name: string;
   imageUrl: string;
   floorPrice: number;
-
   rarityName: string;
   maxIssuance: number;
 }
@@ -37,13 +37,13 @@ interface Item {
 interface Sale {
   id: number;
   price: number;
-  toUser: string;
+  toPlayer: string;
   nft: NFT;
   date: Date;
 }
 
 interface Purchase extends Sale {
-  fromUser: string;
+  fromPlayer: string;
 }
 
 interface Drop {
@@ -52,7 +52,7 @@ interface Drop {
   nft: NFT;
 }
 
-export default function UserHistory({ data }: { data: User }) {
+export default function PlayerHistory({ data }: { data: Player }) {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -137,7 +137,7 @@ export default function UserHistory({ data }: { data: User }) {
         header: "NFT ID",
       },
       {
-        accessorKey: "fromUser",
+        accessorKey: "fromPlayer",
         header: "Seller",
         muiTableHeadCellProps: { sx: { color: "red" } },
       },
@@ -189,7 +189,7 @@ export default function UserHistory({ data }: { data: User }) {
         header: "NFT ID",
       },
       {
-        accessorKey: "toUser",
+        accessorKey: "toPlayer",
         header: "Buyer",
         size: 100,
         muiTableHeadCellProps: { sx: { color: "green" } },
@@ -238,6 +238,11 @@ export default function UserHistory({ data }: { data: User }) {
         },
       },
       {
+        accessorKey: "issuedId",
+        size: 50,
+        header: "NFT ID",
+      },
+      {
         accessorKey: "item.name",
         header: "Item Name",
       },
@@ -264,7 +269,7 @@ export default function UserHistory({ data }: { data: User }) {
     ],
     []
   );
-  
+
   const [selectedOption, setSelectedOption] = useState("Inventory");
 
   return (

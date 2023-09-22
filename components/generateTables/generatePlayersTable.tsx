@@ -1,12 +1,11 @@
 "use client";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tableHeader from "./tableHeader.module.scss";
 import Link from "next/link";
 
-
-interface User {
+interface Player {
   id: number;
   name: string;
   spent: number;
@@ -14,14 +13,15 @@ interface User {
   balance: number;
 }
 
-export default function GenerateUsersTable({ data }: { data: User[] }) {
+export default function GeneratePlayersTable({ data }: { data: Player[] }) {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
   });
+
 //@ts-ignore
-  const columns: MRT_ColumnDef<User>[] = useMemo(
+  const columns: MRT_ColumnDef<Player>[] = useMemo(
     () => [
       {
         accessorKey: "id",
@@ -42,7 +42,7 @@ export default function GenerateUsersTable({ data }: { data: User[] }) {
           renderedCellValue: string;
           cell: any; // Adjust the cell type as needed
         }) => (
-          <Link href={`/users/${encodeURIComponent(cell.getValue())}`}>
+          <Link href={`/players/${encodeURIComponent(cell.getValue())}`}>
             {renderedCellValue}
           </Link>
         ),
@@ -84,7 +84,7 @@ export default function GenerateUsersTable({ data }: { data: User[] }) {
   return (
     <>
       <div className={tableHeader.container}>
-        <h1 className={tableHeader.title}>Users Table</h1>
+        <h1 className={tableHeader.title}>Players Table</h1>
       </div>
       <ThemeProvider theme={darkTheme}>
         <MaterialReactTable columns={columns} data={data} />
