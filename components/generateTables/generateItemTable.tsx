@@ -15,7 +15,6 @@ interface Item {
   imageUrl: string;
   floorPrice: number;
   maxIssuance: number;
-  setName: string | null;
   rarityName: string | null;
   collectionName: string | null;
   optionName: string;
@@ -27,17 +26,16 @@ interface NFT {
   composedId: string;
   issuedId: number;
   lootDate: Date | null;
-  owner: User | null;
+  owner: Player | null;
   ownerName: string | null;
   item: Item | null;
   archetypeId: string;
 }
 
-interface User {
+interface Player {
   id: number;
   name: string;
   nfts: NFT[];
-
   spent: number;
   sold: number;
   balance: number;
@@ -49,8 +47,9 @@ interface User {
 
 interface GenerateItemTableProps {
   data: Item;
-  ownersGrouped: User[];
+  ownersGrouped: Player[];
 }
+
 export default function GenerateItemTable({
   data,
   ownersGrouped,
@@ -80,7 +79,7 @@ export default function GenerateItemTable({
         muiTableHeadCellProps: { sx: { color: "skyblue" } }, //custom props
         //@ts-ignore
         Cell: ({ renderedCellValue }: { renderedCellValue: string }) => (
-          <Link href={`/users/${encodeURIComponent(renderedCellValue)}`}>
+          <Link href={`/players/${encodeURIComponent(renderedCellValue)}`}>
             {renderedCellValue}
           </Link>
         ), //optional custom cell render
@@ -109,8 +108,6 @@ export default function GenerateItemTable({
                   FloorPrice :{" "}
                   {Number(data.floorPrice.toFixed(2)).toLocaleString()}
                 </h3>
-
-                {data.setName ? <h3>{data.setName}</h3> : <h3>Pas de set</h3>}
                 <h3>Number of NFTs issued: {data.nfts.length}</h3>
                 <h3>Owners: {totalOwners}</h3>
               </div>
@@ -131,6 +128,5 @@ export default function GenerateItemTable({
       </ThemeProvider>
       <Link href="/items">Go back to Items list</Link>
     </>
-
   );
 }

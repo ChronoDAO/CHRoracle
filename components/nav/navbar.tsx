@@ -6,12 +6,13 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
 import { LiaDragonSolid } from "react-icons/lia";
-import { HiUsers, HiUserCircle } from "react-icons/hi";
+import { HiUser, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle,} from "react-icons/bi";
-//import { useSession } from "next-auth/react";
-
+import { SlSettings } from "react-icons/sl";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { signIn, signOut } from "next-auth/react";
 
 const nav = () => {
   const [isBarCollapsed, setIsBarCollapsed] = useState(true);
@@ -20,13 +21,15 @@ const nav = () => {
     setIsBarCollapsed((prev) => !prev);
   };
 
- // const session = useSession()
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <div className={styles["sidebar-wrapper"]} data-collapse={isBarCollapsed}>
       <button className={styles.btn} onClick={toggleSideBarHandler}>
         <MdOutlineKeyboardArrowLeft />
       </button>
+
       <aside className={styles.sidebar} id="navbar">
         <div className={styles["top-sidebar"]} onClick={toggleSideBarHandler}>
           <span className={styles.logo}>
@@ -46,22 +49,24 @@ const nav = () => {
               </li>
             </Link>
 
-            <Link href="/dashboard">
-              <li className={styles.item}>
-                <span className={styles["item-icon"]}>
-                  <MdOutlineSpaceDashboard />
-                </span>
-                <span className={styles["item-title"]}>Dashboard</span>
-              </li>
-            </Link>
+            { user &&
+              <>
+                <Link href="/dashboard">
+                  <li className={styles.item}>
+                    <span className={styles["item-icon"]}>
+                      <MdOutlineSpaceDashboard />
+                    </span>
+                    <span className={styles["item-title"]}>Dashboard</span>
+                  </li>
+                </Link>
+              </>}
 
-          
-            <Link href="/users" className={styles.links}>
+            <Link href="/players" className={styles.links}>
               <li className={styles.item}>
                 <span className={styles["item-icon"]}>
-                  <HiUsers />
+                  <HiUser />
                 </span>
-                <span className={styles["item-title"]}>Users</span>
+                <span className={styles["item-title"]}>Players</span>
               </li>
             </Link>
 
@@ -74,7 +79,37 @@ const nav = () => {
               </li>
             </Link>
 
-           
+            { user ? (
+              <>
+                <Link href="/profile">
+                  <li className={styles.item}>
+                    <span className={styles["item-icon"]}>
+                      <SlSettings />
+                    </span>
+                    <span className={styles["item-title"]}>Profile</span>
+                  </li>
+                </Link>
+                <div className={styles.links}>
+                  <li className={styles.item} onClick={() => signOut()}>
+                    <span className={styles["item-icon"]}>
+                      <HiUserCircle />
+                    </span>
+                    <span className={styles["item-title"]}>Log out !</span>
+                  </li>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={styles.links}>
+                  <li className={styles.item} onClick={() => signIn('discord', {callbackUrl: '/dashboard'}, {prompt : "none"})}>
+                    <span className={styles["item-icon"]}>
+                      <HiUserCircle />
+                    </span>
+                    <span className={styles["item-title"]}> Log in </span>
+                  </li>
+                  </div>
+              </>
+            )}
           </ul>
         </div>
       </aside>

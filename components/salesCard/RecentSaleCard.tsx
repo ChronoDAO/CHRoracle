@@ -5,8 +5,8 @@ import { HiArrowCircleRight } from "react-icons/hi";
 type TypeItemSales = {
   price: number;
   date: Date;
-  toUser: string;
-  fromUser: string;
+  toPlayer: string;
+  fromPlayer: string;
   issuedId: number;
   itemName: string;
   imageUrl: string;
@@ -17,13 +17,13 @@ interface NFT {
   composedId: string;
   issuedId: number;
   lootDate: Date | null;
-  owner: User | null;
+  owner: Player | null;
   ownerName: string | null;
   item: Item;
   archetypeId: string | null;
 }
 
-interface User {
+interface Player {
   id: number;
   name: string;
   nfts: NFT[];
@@ -38,8 +38,8 @@ interface Sale {
   id: number;
   price: number;
   date: Date;
-  from: User;
-  to: User;
+  from: Player;
+  to: Player;
   nft: NFT;
   nftId: string | null;
 }
@@ -81,8 +81,8 @@ const getTimeDifference = (date: Date): string => {
 const RecentSaleCard: React.FC<TypeItemSales> = ({
   price,
   date,
-  toUser,
-  fromUser,
+  toPlayer,
+  fromPlayer,
   issuedId,
   itemName,
   imageUrl,
@@ -96,18 +96,18 @@ const RecentSaleCard: React.FC<TypeItemSales> = ({
           # {issuedId}
           </div>
         </div>
-        
+
         <img className={styles.tokenImage} src={imageUrl} alt={itemName} />
         <div className={styles["nft-name"]}>
           {itemName}
         </div>
 
-        <div className={styles.users}>
-          <p>{fromUser}</p>
+        <div className={styles.players}>
+          <p>{fromPlayer}</p>
           <div className={styles.arrowIcon}>
             <HiArrowCircleRight />
           </div>
-          <p>{toUser}</p>
+          <p>{toPlayer}</p>
         </div>
 
         <hr />

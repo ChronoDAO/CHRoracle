@@ -1,11 +1,18 @@
-// "use client";
+"use client";
 
-// import { SessionProvider } from "next-auth/react";
+import React, { FC } from "react";
+import MatomoTracker from "./../components/Matomo/MatomoTracker";
+import { SessionProvider } from "next-auth/react";
 
-// type Props = {
-//   children?: React.ReactNode;
-// };
+type Props = {
+  children?: React.ReactNode;
+};
 
-// export const NextAuthProvider = ({ children }: Props) => {
-//   return <SessionProvider>{children}</SessionProvider>;
-// };
+export const NextAuthProvider = ({ children }: Props) => {
+  return (<>
+    <SessionProvider>
+      <MatomoTracker />
+      {children}
+    </SessionProvider>;
+  </>)
+};
