@@ -20,7 +20,8 @@ const nav = () => {
     setIsBarCollapsed((prev) => !prev);
   };
 
- const session = useSession()
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <div className={styles["sidebar-wrapper"]} data-collapse={isBarCollapsed}>
@@ -47,7 +48,7 @@ const nav = () => {
               </li>
             </Link>
 
-            { session &&
+            { user &&
               <>
                 <Link href="/dashboard">
                   <li className={styles.item}>
@@ -77,7 +78,7 @@ const nav = () => {
               </li>
             </Link>
 
-            { session ? (
+            { user ? (
               <>
               {/* <Link href="/api/auth/signout" className={styles.links}> */}
               <div className={styles.links}>
