@@ -47,14 +47,17 @@ const nav = () => {
               </li>
             </Link>
 
-            <Link href="/dashboard">
-              <li className={styles.item}>
-                <span className={styles["item-icon"]}>
-                  <MdOutlineSpaceDashboard />
-                </span>
-                <span className={styles["item-title"]}>Dashboard</span>
-              </li>
-            </Link>
+            { session &&
+              <>
+                <Link href="/dashboard">
+                  <li className={styles.item}>
+                    <span className={styles["item-icon"]}>
+                      <MdOutlineSpaceDashboard />
+                    </span>
+                    <span className={styles["item-title"]}>Dashboard</span>
+                  </li>
+                </Link>
+              </>}
 
             <Link href="/players" className={styles.links}>
               <li className={styles.item}>
