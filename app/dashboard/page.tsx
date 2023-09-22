@@ -55,6 +55,7 @@ export default async function Dashboard() {
 
   return (
     <div className={styles["center-title"]}>
+      <h1>Welcome, ${user?.global_name}</h1>
       <h1>Work in Progress </h1>
     </div>
   )
