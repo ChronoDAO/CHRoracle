@@ -6,7 +6,7 @@ import MyAppProvider from "./providers";
 
 export const metadata: Metadata = {
   title: "Chrono App",
-  description: "A ChronoDAO App to analyze the Big Time marketplace.",
+  description: "A ChronoDAO App to analyze the Big Time marketplace!",
 };
 
 export default function RootLayout({
