@@ -1,22 +1,23 @@
 "use client";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-
 interface ClientPieData {
-  user: User;
+  player: Player;
   uniqueNFTCount: number;
 }
+
 interface NFT {
   id: number;
   composedId: string;
   issuedId: number;
   lootDate: any | null;
-  owner: User | null;
+  owner: Player | null;
   ownerName: string | null;
   item: Item;
   archetypeId: string;
 }
-interface User {
+
+interface Player {
   id: number;
   name: string;
   nfts: NFT[];
@@ -33,7 +34,6 @@ interface Item {
   imageUrl: string;
   floorPrice: number;
   maxIssuance: number;
-  setName: string | null;
   rarityName: string | null;
   collectionName: string | null;
   optionName: string;
@@ -66,16 +66,14 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default function ({ user, uniqueNFTCount }: ClientPieData) {
-
+export default function ({ player }: ClientPieData) {
 
   const pieData = [
-    { name: "Drops", value: user.drops.length },
-    { name: "NFTs", value: user.nfts.length - user.drops.length },
+    { name: "Drops", value: player.drops.length },
+    { name: "NFTs", value: player.nfts.length - player.drops.length },
   ];
 
   return (
-    
       <PieChart  width={400} height={400}>
         <Pie
           data={pieData}
@@ -97,6 +95,5 @@ export default function ({ user, uniqueNFTCount }: ClientPieData) {
         <Tooltip />
         <Legend />
       </PieChart>
-    
   );
 }

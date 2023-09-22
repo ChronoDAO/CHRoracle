@@ -1,8 +1,8 @@
 import prisma from "./prisma";
 
-export default async function searchUser(searchQuery:string) {
+export default async function searchPlayer(searchQuery:string) {
   try {
-    const users = await prisma.user.findMany({
+    const players = await prisma.player.findMany({
       where: {
         name: {
           contains: searchQuery, // Use 'contains' for partial string matching
@@ -10,9 +10,9 @@ export default async function searchUser(searchQuery:string) {
       },
     });
 
-    return users;
+    return players;
   } catch (error:any) {
-    console.error(`Error fetching users by name: ${error.message}`);
+    console.error(`Error fetching players by name: ${error.message}`);
     throw error;
   }
 }

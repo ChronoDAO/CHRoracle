@@ -1,17 +1,19 @@
 import ClientPie from "./ClientPie";
 import NFTCard from "./NFTCard";
-import styles from "./userCard.module.scss";
+import styles from "./playerCard.module.scss";
+
 interface NFT {
   id: number;
   composedId: string;
   issuedId: number;
   lootDate: any | null;
-  owner: User | null;
+  owner: Player | null;
   ownerName: string | null;
   item: Item;
   archetypeId: string;
 }
-interface User {
+
+interface Player {
   id: number;
   name: string;
   nfts: NFT[];
@@ -21,6 +23,7 @@ interface User {
   drops: any[];
   purchases: any[];
 }
+
 interface Item {
   archetypeId: string;
   name: string;
@@ -33,19 +36,20 @@ interface Item {
   collectionName: string | null;
   optionName: string;
 }
-const generateUserInfos = (user: User) => {
-  //  // Convertir les dates en chaînes ISO et gérer les valeurs null
-  const purchasesWithSerializedDates = user.purchases.map((purchase) => ({
+
+const generatePlayerInfos = (player: Player) => {
+  // Convertir les dates en chaînes ISO et gérer les valeurs null
+  const purchasesWithSerializedDates = player.purchases.map((purchase) => ({
     ...purchase,
     date: purchase.date.toISOString(),
   }));
 
-  const dropsWithSerializedDates = user.drops.map((drop) => ({
+  const dropsWithSerializedDates = player.drops.map((drop) => ({
     ...drop,
     date: drop.date.toISOString(),
   }));
 
-  const nftsWithSerializedDates = user.nfts.map((nft) => ({
+  const nftsWithSerializedDates = player.nfts.map((nft) => ({
     ...nft,
     lootDate: nft.lootDate ? new Date(nft.lootDate).toISOString() : "",
   }));
@@ -56,43 +60,45 @@ const generateUserInfos = (user: User) => {
 
   const uniqueArchetypeIds = [...new Set(archetypeIds)];
   const uniqueNFTCount = uniqueArchetypeIds.length;
-  let userInfo = {
-    user: {
-      ...user,
+  let playerInfo = {
+    player: {
+      ...player,
       purchases: purchasesWithSerializedDates,
       drops: dropsWithSerializedDates,
       nfts: nftsWithSerializedDates,
     },
     uniqueNFTCount,
   };
-  return userInfo;
+  return playerInfo;
 };
-export default function UserCard({ data }: { data: User }) {
-  let userInfo = generateUserInfos(data);
+
+export default function PlayerCard({ data }: { data: Player }) {
+  let playerInfo = generatePlayerInfos(data);
 
   const proportionDrop = parseFloat(
-    ((userInfo.user.drops.length / userInfo.user.nfts.length) * 100).toFixed(2)
+    ((playerInfo.player.drops.length / playerInfo.player.nfts.length) * 100).toFixed(2)
   );
   const proportionUni = parseFloat(
-    ((userInfo.uniqueNFTCount / userInfo.user.nfts.length) * 100).toFixed(2)
+    ((playerInfo.uniqueNFTCount / playerInfo.player.nfts.length) * 100).toFixed(2)
   );
+
   return (
     <>
       <h1 className={styles.title}>{data.name}'s Stats</h1>
       <div className={styles.container}>
         <NFTCard
-          totalNFTs={userInfo.user.nfts.length}
-          totalValue={parseFloat(userInfo.user.balance.toFixed(2))}
-          totalDropNFT={userInfo.user.drops.length}
+          totalNFTs={playerInfo.player.nfts.length}
+          totalValue={parseFloat(playerInfo.player.balance.toFixed(2))}
+          totalDropNFT={playerInfo.player.drops.length}
           proportion={proportionDrop}
-          uniqueNFTs={userInfo.uniqueNFTCount}
+          uniqueNFTs={playerInfo.uniqueNFTCount}
           proportionUni={proportionUni}
           //@ts-ignore
-          user={userInfo.user}
+          player={playerInfo.player}
         />
         {/* <ClientPie
-          user={userInfo.user}
-          uniqueNFTCount={userInfo.uniqueNFTCount}
+          player={playerInfo.player}
+          uniqueNFTCount={playerInfo.uniqueNFTCount}
         />  */}
       </div>
     </>

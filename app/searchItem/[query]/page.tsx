@@ -1,8 +1,8 @@
 import Link from "next/link";
-import prisma from "../../../lib/prisma/prisma";
+import prisma from "@/lib/prisma/prisma";
 import ItemNotFound from "@/components/errors/itemNotFound";
-import styles from "./page.module.scss";
 import searchItems from "@/lib/prisma/searchItems";
+import styles from "./searchItem.module.scss";
 
 type Params = {
   params: {

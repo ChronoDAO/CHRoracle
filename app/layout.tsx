@@ -1,18 +1,18 @@
 import Navbar from "../components/nav/navbar";
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 import "../styles/globals.scss";
 import { NextAuthProvider } from "./providers";
 
 
 export const metadata: Metadata = {
-  title: 'Chrono App',
-  description: 'A ChronoDAO App to analyze the Big Time marketplace.',
-}
+  title: "Chrono App",
+  description: "A ChronoDAO App to analyze the Big Time marketplace!",
+};
 
 export default function RootLayout({
   children,
-} : {
-  children: React.ReactNode
+}: {
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -25,5 +25,5 @@ export default function RootLayout({
         </NextAuthProvider>
       </body>
     </html>
-  )
+  );
 }

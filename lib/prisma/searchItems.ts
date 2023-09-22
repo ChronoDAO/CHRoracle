@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "./prisma";
 
 export default async function searchItems(query: string, archetypeid?: string) {
   // Si archetypeid est spécifié, recherchez des éléments basés sur cet ID

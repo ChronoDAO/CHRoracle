@@ -5,10 +5,9 @@ import SalesByDaysChart from "@/components/charts/SalesByDaysChart";
 import SalesByHourChart from "@/components/charts/SalesTimeChart";
 
 type SalesProps = {
-    data: any;
-    data24h: any;
-  };
-
+  data: any;
+  data24h: any;
+};
 
 export default function Sales({ data, data24h }: SalesProps){
   const [selectedTime, setSelectedTime] = useState("allChart");
@@ -17,7 +16,6 @@ export default function Sales({ data, data24h }: SalesProps){
     <div className={styles["sales-hystory-container"]}>
       <div className={styles["sales-header"]}>
         <div className={styles["sales-title"]}>sales history</div>
-
         <div className={styles["radios-container"]}>
           <input
             type="radio"
