@@ -26,7 +26,7 @@ $navbar-item-background: rgb(6, 6, 6);
     cursor: pointer;
     transform: translateX(50%);
     font-size: 1.1rem;
-   
+
     &:hover{
       color: rgba(42, 208, 39, 0.75);
       border-color: rgba(42, 208, 39, 0.75);
@@ -86,7 +86,7 @@ $navbar-item-background: rgb(6, 6, 6);
           align-items: center;
           color: gray;
         }
-        
+
         .item-title {
           margin-left: 0.5rem;
           text-transform: capitalize;

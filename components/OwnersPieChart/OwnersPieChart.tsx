@@ -29,7 +29,6 @@ const OwnersPieChart: React.FC<Props> = ({ rawData, total }) => {
     .sort((a: ChartData, b: ChartData) => b.value - a.value);
 
   return (
-
       <PieChart chartData={ownersDataForPieChart} />
 
   );

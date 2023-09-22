@@ -1,10 +1,10 @@
 import prisma from "./prisma";
 
-export const getUserHistory = async ({ username }: { username: string }) => {
+export const getPlayerHistory = async ({ playername }: { playername: string }) => {
 
-  let user = await prisma.user.findFirst({
+  let player = await prisma.player.findFirst({
     where: {
-      name: username,
+      name: playername,
     },
     include: {
       nfts: {
@@ -41,5 +41,5 @@ export const getUserHistory = async ({ username }: { username: string }) => {
       },
     },
   });
-  return user;
+  return player;
 };

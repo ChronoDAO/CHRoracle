@@ -1,14 +1,13 @@
-import prisma from "../../../lib/prisma/prisma";
+import prisma from "@/lib/prisma/prisma";
 import GenerateItemTable from "@/components/generateTables/generateItemTable";
 import ItemNotFound from "@/components/errors/itemNotFound";
-import { getOwnersGroupedByOwners } from "../../../lib/prisma/nfts-grouped-by-owners";
+import { getOwnersGroupedByOwners } from "@/lib/prisma/nfts-grouped-by-owners";
 
 type Params = {
   params: {
     archetypeid: string
   }
 }
-
 
 export default async function Item({ params: { archetypeid }}: Params)  {
 
@@ -26,12 +25,11 @@ export default async function Item({ params: { archetypeid }}: Params)  {
   }
 
   const ownersGrouped = await getOwnersGroupedByOwners({archetypeid});
-  
-  //@ts-ignore
-  return (<GenerateItemTable data={item} ownersGrouped={ownersGrouped}
-   />
 
-   )
+  return (
+    //@ts-ignore
+    <GenerateItemTable data={item} ownersGrouped={ownersGrouped} />
+  )
 }
 
 

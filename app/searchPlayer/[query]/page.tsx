@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import searchUser from '@/lib/prisma/searchUser';
+import searchPlayer from '@/lib/prisma/searchPlayer';
 import styles from './page.module.scss';
 
 type Params = {
@@ -9,18 +9,18 @@ type Params = {
 };
 
 export default async function SearchResultPage({ params: { query } }: Params) {
-  //@ts-ignore 
-  const results = await searchUser(query);
+  //@ts-ignore
+  const results = await searchPlayer(query);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}> Search results : {query}</h1>
 
-      <ul className={styles.userList}>
+      <ul className={styles.playerList}>
         {results.map((result) => (
-          <li className={styles.userItem} key={result.id}>
-            <Link href={`/users/${encodeURIComponent(result.name)}`} passHref>
-              <span className={styles.userLink}>
+          <li className={styles.playerItem} key={result.id}>
+            <Link href={`/players/${encodeURIComponent(result.name)}`} passHref>
+              <span className={styles.playerLink}>
                 {result.name}
               </span>
             </Link>
