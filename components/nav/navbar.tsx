@@ -9,6 +9,7 @@ import { LiaDragonSolid } from "react-icons/lia";
 import { HiUser, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle,} from "react-icons/bi";
+import { SlSettings } from "react-icons/sl";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { signIn, signOut } from "next-auth/react";
@@ -80,28 +81,33 @@ const nav = () => {
 
             { user ? (
               <>
-              {/* <Link href="/api/auth/signout" className={styles.links}> */}
-              <div className={styles.links}>
-                <li className={styles.item} onClick={() => signOut()}>
-                  <span className={styles["item-icon"]}>
-                    <HiUserCircle />
-                  </span>
-                  <span className={styles["item-title"]}>Log out !</span>
-                </li></div>
-              {/* </Link> */}
-            </>
+                <Link href="/settings">
+                  <li className={styles.item}>
+                    <span className={styles["item-icon"]}>
+                      <SlSettings />
+                    </span>
+                    <span className={styles["item-title"]}>Settings</span>
+                  </li>
+                </Link>
+                <div className={styles.links}>
+                  <li className={styles.item} onClick={() => signOut()}>
+                    <span className={styles["item-icon"]}>
+                      <HiUserCircle />
+                    </span>
+                    <span className={styles["item-title"]}>Log out !</span>
+                  </li>
+                </div>
+              </>
             ) : (
               <>
-                {/* <Link href="/api/auth/signin" className={styles.links}> */}
                 <div className={styles.links}>
-                  <li className={styles.item} onClick={() => signIn('discord', {callbackUrl: '/dashboard'})}>
+                  <li className={styles.item} onClick={() => signIn('discord', {callbackUrl: '/dashboard'}, {prompt : "none"})}>
                     <span className={styles["item-icon"]}>
                       <HiUserCircle />
                     </span>
                     <span className={styles["item-title"]}> Log in </span>
                   </li>
                   </div>
-                {/* </Link> */}
               </>
             )}
           </ul>
