@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "../styles/globals.scss";
 import { NextAuthProvider } from "./providers";
 
-
 export const metadata: Metadata = {
   title: "Chrono App",
   description: "A ChronoDAO App to analyze the Big Time marketplace!",
