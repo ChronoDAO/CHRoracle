@@ -81,12 +81,12 @@ const nav = () => {
 
             { user ? (
               <>
-                <Link href="/settings">
+                <Link href="/profile">
                   <li className={styles.item}>
                     <span className={styles["item-icon"]}>
                       <SlSettings />
                     </span>
-                    <span className={styles["item-title"]}>Settings</span>
+                    <span className={styles["item-title"]}>Profile</span>
                   </li>
                 </Link>
                 <div className={styles.links}>
