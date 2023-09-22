@@ -1,8 +1,7 @@
 import Navbar from "../components/nav/navbar";
 import type { Metadata } from "next";
 import "../styles/globals.scss";
-import MyAppProvider from "./providers";
-// import { NextAuthProvider } from "./providers";
+import { NextAuthProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "Chrono App",
@@ -17,10 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MyAppProvider>
+        <NextAuthProvider>
           <Navbar />
-          <div className="app-content-container">{children}</div>
-        </MyAppProvider>
+          <div className="app-content-container">
+            {children}
+          </div>
+        </NextAuthProvider>
       </body>
     </html>
   );
