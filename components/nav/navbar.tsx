@@ -9,8 +9,9 @@ import { LiaDragonSolid } from "react-icons/lia";
 import { HiUser, HiUserCircle } from "react-icons/hi";
 import { GiAxeSword } from "react-icons/gi";
 import { BiSolidCastle,} from "react-icons/bi";
-//import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { signIn, signOut } from "next-auth/react";
 
 const nav = () => {
   const [isBarCollapsed, setIsBarCollapsed] = useState(true);
@@ -19,7 +20,7 @@ const nav = () => {
     setIsBarCollapsed((prev) => !prev);
   };
 
- // const session = useSession()
+ const session = useSession()
 
   return (
     <div className={styles["sidebar-wrapper"]} data-collapse={isBarCollapsed}>
@@ -72,6 +73,33 @@ const nav = () => {
                 <span className={styles["item-title"]}>Items</span>
               </li>
             </Link>
+
+            { session ? (
+              <>
+              {/* <Link href="/api/auth/signout" className={styles.links}> */}
+              <div className={styles.links}>
+                <li className={styles.item} onClick={() => signOut()}>
+                  <span className={styles["item-icon"]}>
+                    <HiUserCircle />
+                  </span>
+                  <span className={styles["item-title"]}>Log out !</span>
+                </li></div>
+              {/* </Link> */}
+            </>
+            ) : (
+              <>
+                {/* <Link href="/api/auth/signin" className={styles.links}> */}
+                <div className={styles.links}>
+                  <li className={styles.item} onClick={() => signIn('discord', {callbackUrl: '/dashboard'})}>
+                    <span className={styles["item-icon"]}>
+                      <HiUserCircle />
+                    </span>
+                    <span className={styles["item-title"]}> Log in </span>
+                  </li>
+                  </div>
+                {/* </Link> */}
+              </>
+            )}
           </ul>
         </div>
       </aside>
