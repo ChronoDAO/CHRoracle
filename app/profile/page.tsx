@@ -7,7 +7,7 @@ export default async function Settings() {
 
   return (
     <>
-      <p>Hello, ${user?.global_name} ! </p>
+      <p>Hello, {user?.global_name} ! </p>
       <p> We're still constructing this part of the website</p>
       <p> If you want to delete your account, you can contact us on discord</p>
       <a href='https://discord.gg/chronodao'>Discord ChronoDAO</a>
