@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.userList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.userItem {
+  margin: 10px 0;
+}
+
+.userLink {
+  color: #0070f3;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
