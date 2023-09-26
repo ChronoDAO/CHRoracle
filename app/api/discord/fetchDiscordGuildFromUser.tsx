@@ -36,8 +36,8 @@ export async function updateGuildData(session: any) {
             updatedAt: new Date(),
           },
           create: {
-            discordGuildId: guild.id,
-            discordGuildName: guild.name,
+            id: guild.id,
+            name: guild.name,
             icon: guild.icon,
             ownerId: guild.owner_id,
             approximate_number_count: guild.approximate_member_count,
