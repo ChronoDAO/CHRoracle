@@ -22,7 +22,9 @@ module.exports = {
     //   // => @media (min-width: 1536px) { ... }
     // },
     extend: {
-
+      backgroundImage: {
+        'not-found': 'public/polygon-scatter-haikei.svg'
+      }
     },
   },
   plugins: [],
