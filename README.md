@@ -33,13 +33,13 @@ To only add an info to the table user, change the `ìnterface user` and then the
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone git@github.com:ChronoDAO/CHRoracle.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd CHRoracle
 ```
 
 Install dependencies
@@ -52,7 +52,7 @@ Transform the ``.env.local` into `.env` and add your own discord API key and sup
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
 ### License
