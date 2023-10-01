@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CHRORACLE
+![GitHub language top](https://img.shields.io/github/languages/top/ChronoDAO/CHROracle)
 
-## Getting Started
+[CHROracle](app.chronodao.com) is a webapp to track and follow the market of the web 3 game [Big Time](https://bigtime.gg). It follows close to real time the evolution of sales, floor price and other aspects of the market place.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+[Authors](#authors)  
+[Modifying-the-database](#modifiying-the-database)  
+[Next-Auth](#next-auth)  
+[Licence](#licence)  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Authors
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[@LionelDiot](https://github.com/LionelDiot)  
+[@AndreaSolis](https://github.com/Andreasolisgarcia)  
+[@Cyber-Geooorge](https://github.com/Cyber-Geooorge)  
+[@LisaDaudibon](https://github.com/LisaDaudibon)  
+[@1996thomas](https://github.com/1996thomas)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Modifying the database
+If you work on our database, any and all changes related to the database must be done in the Indexer. If you're not part of the organisation ChronoDAO but want to contribute, you can contact us to request access. 
 
-To learn more about Next.js, take a look at the following resources:
+If you're using your own supabase access key, disregard the consideration above. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+INFO : if you fork the project and do modification to the database, know that will be unable to accept any pull request from you because it could disrupt our own schema.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Next-Auth
+This project handles authentication for the users using next-auth and jwt. To add, modify or delete a field of the model User, you'll first need to go through the [indexer](https://github.com/ChronoDAO/Indexer.git) to make changes to the db.
 
-## Deploy on Vercel
+Then to fill, modify or remove the new field from the table User, you have to modify the following files :
+- `auth.d.ts` at the root level,
+- `lib/prisma/auth.ts`,
+and the route/component where you want to show the new information.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To only add an info to the table user, change the `ìnterface user` and then the profile info in the `lib/prisma/auth.ts` file, to get a new info in the session, change both the `jwt` and the `session interface` in the `auth.d.ts` and the info you get in the `auth.ts` file.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### License
+This project is protected under the GNU License.
