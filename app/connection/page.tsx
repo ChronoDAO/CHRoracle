@@ -1,5 +1,5 @@
 import AddNameComponent from "@/components/Add/AddName";
-import YesNoCheckbox from "@/components/Checkbox/Checkbox";
+// import YesNoCheckbox from "@/components/Checkbox/Checkbox";
 
 export default function Connection() {
   return (
