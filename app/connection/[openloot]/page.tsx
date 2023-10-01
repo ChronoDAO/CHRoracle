@@ -1,4 +1,3 @@
-import React from "react";
 import AddNameComponent from "@/components/Add/AddName";
 import styles from "./page.module.scss";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import AddNameComponent from "@/components/Add/AddName";
 import YesNoCheckbox from "@/components/Checkbox/Checkbox";
 
