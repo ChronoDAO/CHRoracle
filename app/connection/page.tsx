@@ -15,11 +15,11 @@ export default function Connection() {
           <AddNameComponent />
         </section>
 
-        <section>
+        {/* <section>
           <h3>Do you have an old Openloot name ?</h3>
           <YesNoCheckbox />
           <AddNameComponent />
-        </section>
+        </section> */}
       </main>
     </div>
   );

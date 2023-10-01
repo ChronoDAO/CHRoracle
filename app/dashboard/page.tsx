@@ -1,9 +1,9 @@
 import styles from './dashboard.module.scss'
-import { updateGuildData } from '../api/discord/fetchDiscordGuildFromUser';
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/prisma/auth';
-import prisma from '@/lib/prisma/prisma';
+import { updateGuildData } from '../api/discord/fetchDiscordGuildFromUser';
 import { differenceInDays } from "date-fns";
+import prisma from '@/lib/prisma/prisma';
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -52,6 +52,7 @@ export default async function Dashboard() {
   } else {
     console.log("All DiscordGuilds up to date. No fetch needed.");
   }
+
 
   return (
     <div className={styles["center-title"]}>
